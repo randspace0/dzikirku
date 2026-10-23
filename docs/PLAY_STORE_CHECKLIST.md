@@ -12,8 +12,9 @@ Play policy numbers change often. Re-verify every number below in Play Console (
 - [ ] Enable R8 (`isMinifyEnabled = true`, `shrinkResources = true`), add keep rules, and exercise the whole app on a release build.
 - [ ] Register `id.gritlabs.dzikirku` (and `.dev`) in Firebase, add the release and Play App Signing SHA-1/256 fingerprints, replace `app/google-services.json`, update `your_web_client_id`, restrict the API key to the package + SHA.
 - [ ] Check native libraries for 16 KB page-size support (required when targeting recent Android versions).
-- [ ] Android 13+: declare and request `POST_NOTIFICATIONS`.
-- [ ] Remove unused permissions: `FOREGROUND_SERVICE` (no `<service>`), `WRITE/READ_EXTERNAL_STORAGE` (use MediaStore/SAF), `SET_ALARM` and `WAKE_LOCK` if unused.
+- [ ] Android 13+: `POST_NOTIFICATIONS` is declared; add the runtime request (e.g. during onboarding) once `targetSdk` is 33+.
+- [ ] Android 14+: give `PraytimeForegroundService` a `foregroundServiceType` and the matching `FOREGROUND_SERVICE_<TYPE>` permission; prepare the Play foreground-service declaration.
+- [ ] Remove unused permissions: `WRITE/READ_EXTERNAL_STORAGE` (use MediaStore/SAF), `SET_ALARM` and `WAKE_LOCK` if unused.
 - [ ] Decide on `allowBackup` and add backup rules; keep it consistent with the privacy policy.
 - [ ] Set `versionCode`/`versionName` for the first release.
 
