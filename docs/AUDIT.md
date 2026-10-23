@@ -24,8 +24,8 @@ Items marked **fixed** were fixed in a PR; the rest are open.
 | High | `google-services.json` and `your_web_client_id` are committed and still point at the old Firebase project/app registration | open; replace after registering the new app in Firebase. Restrict the API key by package + SHA-1 |
 | Medium | Release build: `isMinifyEnabled = false`, no `shrinkResources`, no signing config | open; enable R8 and test (Room, Firebase need keep rules) |
 | Medium | `WRITE_EXTERNAL_STORAGE` + `requestLegacyExternalStorage` are obsolete at target 30+ | open; migrate to MediaStore / SAF |
-| Medium | `FOREGROUND_SERVICE` is declared but the manifest has no `<service>` | open; remove if unused |
-| Medium | No `POST_NOTIFICATIONS` permission; adhan/reminder notifications are silently dropped on Android 13+ | open |
+| Medium | `PraytimeForegroundService` has no `foregroundServiceType`; Android 14+ (target 34+) requires one plus the matching `FOREGROUND_SERVICE_<TYPE>` permission, and Play asks to justify it | open; pick a type when raising `targetSdk` |
+| Medium | No `POST_NOTIFICATIONS` permission; adhan/reminder notifications are silently dropped on Android 13+ | permission **declared**; the runtime prompt must be added when `targetSdk` reaches 33+ |
 
 ## Build and maintainability
 
