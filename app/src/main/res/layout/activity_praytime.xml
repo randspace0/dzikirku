@@ -43,11 +43,12 @@
 
                 <ImageView
                     android:id="@+id/back"
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
-                    android:layout_margin="8dp"
+                    android:contentDescription="@string/cd_back"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_margin="0dp"
                     android:onClick="@{()->viewModel.navigator.finish()}"
-                    android:padding="4dp"
+                    android:padding="12dp"
                     android:src="@drawable/ic_back"
                     app:tint="@color/neutral_900" />
 
