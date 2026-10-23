@@ -71,25 +71,31 @@
 
             <ImageView
                 android:id="@+id/grid1"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:layout_margin="20dp"
+                android:contentDescription="@string/cd_flyer_layout_1"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:padding="8dp"
+                android:layout_margin="12dp"
                 android:onClick="@{()->viewModel.onClickGrid1()}"
                 android:src="@drawable/ic_grid_1" />
 
             <ImageView
                 android:id="@+id/grid2"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:layout_margin="20dp"
+                android:contentDescription="@string/cd_flyer_layout_2"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:padding="8dp"
+                android:layout_margin="12dp"
                 android:onClick="@{()->viewModel.onClickGrid2()}"
                 android:src="@drawable/ic_grid_2" />
 
             <ImageView
                 android:id="@+id/grid3"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:layout_margin="20dp"
+                android:contentDescription="@string/cd_flyer_layout_3"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:padding="8dp"
+                android:layout_margin="12dp"
                 android:onClick="@{()->viewModel.onClickGrid3()}"
                 android:src="@drawable/ic_grid_3" />
 

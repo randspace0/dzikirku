@@ -20,4 +20,12 @@
     <string name="your_web_client_id">196229059680-s3285vd19tkv153i8j51qj167pnpjgh4.apps.googleusercontent.com</string>
     <string name="arbain_an_nawawi">Arbain An Nawawi</string>
     <string name="riyad_as_salihin_desc">Riyad as-Salihin or The Meadows of the Righteous, also referred to as The Gardens of the Righteous (Arabic: رياض الصالحين Riyāḍ aṣ-Ṣāliḥīn), is a compilation of verses from the Quran supplemented by hadith narratives written by Al-Nawawi from Damascus (1233–1277).</string>
+    <string name="cd_flyer_layout_1">Flyer layout 1</string>
+    <string name="cd_flyer_layout_2">Flyer layout 2</string>
+    <string name="cd_flyer_layout_3">Flyer layout 3</string>
+    <string name="cd_close">Close</string>
+    <string name="cd_back">Back</string>
+    <string name="cd_settings">Settings</string>
+    <string name="cd_search">Search</string>
+    <string name="cd_bookmarks">Bookmarks</string>
 </resources>
