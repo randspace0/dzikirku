@@ -2,7 +2,7 @@
 
 <img src="https://github.com/mayburger/dzikirqu-android/blob/master/app/src/main/res/drawable/ic_logo_144_circle.png?raw=true" alt='Quran for Android logo'/>
 
-# DzikirQu
+# Dzikirku
 [![Downloads](https://PlayBadges.pavi2410.me/badge/downloads?id=com.wagyufari.dzikirqu)](https://play.google.com/store/apps/details?id=com.wagyufari.dzikirqu)
 [![Version](https://img.shields.io/github/v/release/mayburger/dzikirqu-android?include_prereleases&sort=semver)](https://github.com/mayburger/dzikirqu-android/releases/latest)
 

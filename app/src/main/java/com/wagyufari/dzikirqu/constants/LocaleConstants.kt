@@ -172,7 +172,7 @@ object LocaleConstants {
 
     //S
     const val SUNRISE = "Sunrise"
-    const val SEARCH_DZIKIRQU = "Search DzikirQu"
+    const val SEARCH_DZIKIRQU = "Search Dzikirku"
     const val SURAH = "Surah"
     const val SEARCH = "Search"
     const val SET_AS_LAST_READ = "Set as last read"

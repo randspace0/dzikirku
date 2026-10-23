@@ -101,7 +101,7 @@
                                 android:layout_height="20dp"
                                 android:layout_marginStart="2dp"
                                 android:fontFamily="@font/gideon"
-                                android:text="DzikirQu"
+                                android:text="Dzikirku"
                                 android:textColor="@color/white"
                                 android:textSize="16sp" />
 

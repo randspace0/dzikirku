@@ -129,7 +129,7 @@ class QuranMenuBSD() :
                 getAyahDao()
                     .getAyahBySurahIdAndVerseNumber(surah, ayah).firstOrNull()?.let {
                         main {
-                            requireActivity().copy("${it.text.getArabic()}\n${it.text.getText()}\n\n(${surahName}:${ayah})\n\nCopied from DzikirQu")
+                            requireActivity().copy("${it.text.getArabic()}\n${it.text.getText()}\n\n(${surahName}:${ayah})\n\nCopied from Dzikirku")
                             Toast.makeText(
                                 requireActivity(),
                                 LocaleConstants.COPY_AYAH.locale(),
