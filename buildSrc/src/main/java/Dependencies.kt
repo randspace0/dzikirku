@@ -13,7 +13,7 @@ object Versions{
     val cardView = "1.0.0"
     val multiDex = "2.0.1"
     val material = "1.3.0"
-    val flexbox = "2.0.1"
+    val flexbox = "3.0.0"
     val room = "2.4.0-alpha01"
     val maps = "17.0.0"
     val lifecycleExtensions = "2.2.0"
@@ -63,7 +63,7 @@ object glideDependencies{
 
 object googleDependencies{
     val material ="com.google.android.material:material:${Versions.material}"
-    val flexbox = "com.google.android:flexbox:${Versions.flexbox}"
+    val flexbox = "com.google.android.flexbox:flexbox:${Versions.flexbox}"
     val maps = "com.google.android.gms:play-services-maps:${Versions.maps}"
 }
 
