@@ -581,7 +581,7 @@ fun Context.isDeviceHasCompass(): Boolean {
 
 fun Context.copy(text: String) {
     val clipboard: ClipboardManager? = getSystemService(CLIPBOARD_SERVICE) as ClipboardManager?
-    val clip: ClipData = ClipData.newPlainText("DzikirQu", text)
+    val clip: ClipData = ClipData.newPlainText("Dzikirku", text)
     clipboard?.setPrimaryClip(clip)
 }
 
