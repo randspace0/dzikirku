@@ -5,11 +5,11 @@
 
         <variable
             name="viewModel"
-            type="com.wagyufari.dzikirqu.ui.main.MainViewModel" />
+            type="id.gritlabs.dzikirku.ui.main.MainViewModel" />
 
-        <import type="com.wagyufari.dzikirqu.constants.LocaleConstants" />
+        <import type="id.gritlabs.dzikirku.constants.LocaleConstants" />
 
-        <import type="com.wagyufari.dzikirqu.model.events.MainTabType" />
+        <import type="id.gritlabs.dzikirku.model.events.MainTabType" />
 
         <import type="android.view.View" />
     </data>
@@ -36,7 +36,7 @@
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/home"
-            android:name="com.wagyufari.dzikirqu.ui.main.home.MainHomeFragment"
+            android:name="id.gritlabs.dzikirku.ui.main.home.MainHomeFragment"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             app:layout_constraintBottom_toTopOf="@id/nav_view"
@@ -46,7 +46,7 @@
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/quran"
-            android:name="com.wagyufari.dzikirqu.ui.main.quran.MainQuranFragment"
+            android:name="id.gritlabs.dzikirku.ui.main.quran.MainQuranFragment"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:visibility="gone"
@@ -56,7 +56,7 @@
             app:layout_constraintTop_toTopOf="parent" />
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/prayer"
-            android:name="com.wagyufari.dzikirqu.ui.main.prayer.MainPrayerFragment"
+            android:name="id.gritlabs.dzikirku.ui.main.prayer.MainPrayerFragment"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:visibility="gone"

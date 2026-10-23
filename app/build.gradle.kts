@@ -15,7 +15,7 @@ android {
     flavorDimensions("default")
 
     defaultConfig {
-        applicationId = "com.wagyufari.dzikirqu"
+        applicationId = "id.gritlabs.dzikirku"
         minSdk = 23
         targetSdk = 30
         versionCode = 92
@@ -65,7 +65,7 @@ android {
     productFlavors{
         create("prod"){
             dimension = "default"
-            applicationId = "com.wagyufari.dzikirqu"
+            applicationId = "id.gritlabs.dzikirku"
 
 
             buildConfigField(
@@ -76,7 +76,7 @@ android {
         }
         create("dev"){
             dimension = "default"
-            applicationId = "com.wagyufari.dzikirqu.dev"
+            applicationId = "id.gritlabs.dzikirku.dev"
 
             buildConfigField(
                 "String",

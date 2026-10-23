@@ -11,7 +11,7 @@
 
         <variable
             name="viewModel"
-            type="com.wagyufari.dzikirqu.ui.adapters.viewmodels.ItemSurahViewModel" />
+            type="id.gritlabs.dzikirku.ui.adapters.viewmodels.ItemSurahViewModel" />
 
     </data>
 

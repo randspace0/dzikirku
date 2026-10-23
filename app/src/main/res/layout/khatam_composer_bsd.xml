@@ -7,9 +7,9 @@
 
         <variable
             name="viewModel"
-            type="com.wagyufari.dzikirqu.ui.khatam.composer.KhatamComposerViewModel" />
+            type="id.gritlabs.dzikirku.ui.khatam.composer.KhatamComposerViewModel" />
 
-        <import type="com.wagyufari.dzikirqu.constants.LocaleConstants" />
+        <import type="id.gritlabs.dzikirku.constants.LocaleConstants" />
     </data>
 
     <LinearLayout

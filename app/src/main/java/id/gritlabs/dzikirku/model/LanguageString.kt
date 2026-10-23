@@ -1,0 +1,10 @@
+package id.gritlabs.dzikirku.model
+
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
+@Parcelize
+data class LanguageString(
+    var text: String? = null,
+    var language: String? = null
+):Parcelable

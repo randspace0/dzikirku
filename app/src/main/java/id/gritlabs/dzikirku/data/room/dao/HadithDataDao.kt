@@ -1,0 +1,23 @@
+package id.gritlabs.dzikirku.data.room.dao
+
+import androidx.room.Dao
+import androidx.room.Insert
+import androidx.room.OnConflictStrategy
+import androidx.room.Query
+import id.gritlabs.dzikirku.model.HadithData
+
+@Dao
+interface HadithDataDao {
+
+    @Query("SELECT * FROM hadithData WHERE hadith_id IS :hadithId")
+    suspend fun getHadithById(hadithId:String): List<HadithData>
+
+    @Query("SELECT * FROM hadithData")
+    suspend fun getHadith(): List<HadithData>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun putHadithData(book:List<HadithData>)
+
+    @Query("DELETE FROM hadithData")
+    suspend fun deleteHadithData()
+}

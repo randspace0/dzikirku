@@ -3,13 +3,13 @@
 
     <data>
 
-        <import type="com.wagyufari.dzikirqu.constants.LocaleConstants" />
+        <import type="id.gritlabs.dzikirku.constants.LocaleConstants" />
 
         <variable
             name="viewModel"
-            type="com.wagyufari.dzikirqu.ui.onboarding.fragments.viewmodels.OnBoardPraytimeViewModel" />
+            type="id.gritlabs.dzikirku.ui.onboarding.fragments.viewmodels.OnBoardPraytimeViewModel" />
 
-        <import type="com.wagyufari.dzikirqu.constants.RingType" />
+        <import type="id.gritlabs.dzikirku.constants.RingType" />
 
     </data>
 
