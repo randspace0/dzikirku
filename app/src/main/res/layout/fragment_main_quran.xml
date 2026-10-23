@@ -7,9 +7,9 @@
 
         <variable
             name="viewModel"
-            type="com.wagyufari.dzikirqu.ui.main.quran.MainQuranViewModel" />
+            type="id.gritlabs.dzikirku.ui.main.quran.MainQuranViewModel" />
 
-        <import type="com.wagyufari.dzikirqu.constants.LocaleConstants" />
+        <import type="id.gritlabs.dzikirku.constants.LocaleConstants" />
     </data>
 
     <LinearLayout
@@ -51,13 +51,13 @@
 
                 <androidx.fragment.app.FragmentContainerView
                     android:id="@+id/surah"
-                    android:name="com.wagyufari.dzikirqu.ui.main.quran.fragment.SurahFragment"
+                    android:name="id.gritlabs.dzikirku.ui.main.quran.fragment.SurahFragment"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
 
                 <androidx.fragment.app.FragmentContainerView
                     android:id="@+id/juz"
-                    android:name="com.wagyufari.dzikirqu.ui.main.quran.fragment.JuzFragment"
+                    android:name="id.gritlabs.dzikirku.ui.main.quran.fragment.JuzFragment"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
             </RelativeLayout>

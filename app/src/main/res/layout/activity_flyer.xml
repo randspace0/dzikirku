@@ -5,9 +5,9 @@
 
         <variable
             name="viewModel"
-            type="com.wagyufari.dzikirqu.ui.flyer.FlyerViewModel" />
+            type="id.gritlabs.dzikirku.ui.flyer.FlyerViewModel" />
 
-        <import type="com.wagyufari.dzikirqu.constants.LocaleConstants" />
+        <import type="id.gritlabs.dzikirku.constants.LocaleConstants" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"

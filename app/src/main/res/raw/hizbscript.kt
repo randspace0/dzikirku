@@ -1,13 +1,13 @@
-//package com.wagyufari.dzikirqu
+//package id.gritlabs.dzikirku
 //
 //import android.os.Bundle
 //import androidx.appcompat.app.AppCompatActivity
 //import com.google.gson.Gson
 //import com.google.gson.reflect.TypeToken
-//import com.wagyufari.dzikirqu.SurahDao
-//import com.wagyufari.dzikirqu.model.Ayah
-//import com.wagyufari.dzikirqu.model.Hizb
-//import com.wagyufari.dzikirqu.util.FileUtils
+//import id.gritlabs.dzikirku.SurahDao
+//import id.gritlabs.dzikirku.model.Ayah
+//import id.gritlabs.dzikirku.model.Hizb
+//import id.gritlabs.dzikirku.util.FileUtils
 //import dagger.hilt.android.AndroidEntryPoint
 //import javax.inject.Inject
 //

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.wagyufari.dzikirqu">
+    package="id.gritlabs.dzikirku">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
@@ -15,7 +15,7 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
-        android:name="com.wagyufari.dzikirqu.base.BaseApplication"
+        android:name="id.gritlabs.dzikirku.base.BaseApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -25,7 +25,7 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity
-            android:name="com.wagyufari.dzikirqu.ui.khatam.KhatamActivity"
+            android:name="id.gritlabs.dzikirku.ui.khatam.KhatamActivity"
             android:exported="false" />
 
         <activity
@@ -33,7 +33,7 @@
             android:exported="false" />
 
         <receiver
-            android:name="com.wagyufari.dzikirqu.util.PraytimeWidget"
+            android:name="id.gritlabs.dzikirku.util.PraytimeWidget"
             android:exported="true"
             android:label="@string/app_widget_description_1">
             <intent-filter>
@@ -45,7 +45,7 @@
                 android:resource="@xml/praytime_info_1" />
         </receiver>
         <receiver
-            android:name="com.wagyufari.dzikirqu.util.PraytimeWidget2"
+            android:name="id.gritlabs.dzikirku.util.PraytimeWidget2"
             android:exported="true"
             android:label="@string/app_widget_description_2">
             <intent-filter>
@@ -63,7 +63,7 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Translucent" />
         <activity
-            android:name="com.wagyufari.dzikirqu.ui.share.ShareImageActivity"
+            android:name="id.gritlabs.dzikirku.ui.share.ShareImageActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
@@ -71,7 +71,7 @@
             android:exported="false"
             android:screenOrientation="portrait" />
 
-        <receiver android:name="com.wagyufari.dzikirqu.util.AutoStartReceiver">
+        <receiver android:name="id.gritlabs.dzikirku.util.AutoStartReceiver">
             <intent-filter>
                 <category android:name="android.intent.category.DEFAULT" />
 
@@ -85,27 +85,27 @@
         </receiver>
 
         <activity
-            android:name="com.wagyufari.dzikirqu.ui.praytime.PraytimeActivity"
+            android:name="id.gritlabs.dzikirku.ui.praytime.PraytimeActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Translucent" />
         <activity
-            android:name="com.wagyufari.dzikirqu.ui.flyer.FlyerActivity"
+            android:name="id.gritlabs.dzikirku.ui.flyer.FlyerActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.wagyufari.dzikirqu.ui.bsd.settings.SettingsActivity"
+            android:name="id.gritlabs.dzikirku.ui.bsd.settings.SettingsActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.wagyufari.dzikirqu.ui.CrashActivity"
+            android:name="id.gritlabs.dzikirku.ui.CrashActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.wagyufari.dzikirqu.ui.jump.JumpQuranActivity"
+            android:name="id.gritlabs.dzikirku.ui.jump.JumpQuranActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.wagyufari.dzikirqu.ui.search.SearchActivity"
+            android:name="id.gritlabs.dzikirku.ui.search.SearchActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
@@ -113,14 +113,14 @@
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.wagyufari.dzikirqu.ui.main.MainActivity"
+            android:name="id.gritlabs.dzikirku.ui.main.MainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Translucent" /> <!-- <activity -->
         <!-- android:name=".ui.v2.main.MainV2Activity" -->
         <!-- android:screenOrientation="portrait" -->
         <!-- android:theme="@style/AppTheme" /> -->
         <activity
-            android:name="com.wagyufari.dzikirqu.ui.SplashActivity"
+            android:name="id.gritlabs.dzikirku.ui.SplashActivity"
             android:exported="true"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -185,43 +185,43 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name="com.wagyufari.dzikirqu.ui.note.property.location.NotePropertyLocationActivity"
+            android:name="id.gritlabs.dzikirku.ui.note.property.location.NotePropertyLocationActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name="com.wagyufari.dzikirqu.ui.note.property.tag.NotePropertyTagActivity"
+            android:name="id.gritlabs.dzikirku.ui.note.property.tag.NotePropertyTagActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name="com.wagyufari.dzikirqu.ui.note.property.presenter.NotePropertyPresenterActivity"
+            android:name="id.gritlabs.dzikirku.ui.note.property.presenter.NotePropertyPresenterActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name="com.wagyufari.dzikirqu.ui.note.property.folder.NotePropertyFolderActivity"
+            android:name="id.gritlabs.dzikirku.ui.note.property.folder.NotePropertyFolderActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name="com.wagyufari.dzikirqu.ui.hadithchapter.HadithChapterActivity"
+            android:name="id.gritlabs.dzikirku.ui.hadithchapter.HadithChapterActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.wagyufari.dzikirqu.ui.read.ReadActivity"
+            android:name="id.gritlabs.dzikirku.ui.read.ReadActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.quran.MainQuranActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.wagyufari.dzikirqu.ui.onboarding.OnBoardActivity"
+            android:name="id.gritlabs.dzikirku.ui.onboarding.OnBoardActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.wagyufari.dzikirqu.ui.onboarding.fragments.OnBoardLoadingActivity"
+            android:name="id.gritlabs.dzikirku.ui.onboarding.fragments.OnBoardLoadingActivity"
             android:screenOrientation="portrait" />
 
-        <receiver android:name="com.wagyufari.dzikirqu.util.receiver.AdzanReceiver" />
-        <receiver android:name="com.wagyufari.dzikirqu.util.receiver.KhatamReceiver" />
-        <receiver android:name="com.wagyufari.dzikirqu.util.receiver.DailyReminderReceiver" />
+        <receiver android:name="id.gritlabs.dzikirku.util.receiver.AdzanReceiver" />
+        <receiver android:name="id.gritlabs.dzikirku.util.receiver.KhatamReceiver" />
+        <receiver android:name="id.gritlabs.dzikirku.util.receiver.DailyReminderReceiver" />
 
         <service
-            android:name="com.wagyufari.dzikirqu.util.foreground.PraytimeForegroundService"
+            android:name="id.gritlabs.dzikirku.util.foreground.PraytimeForegroundService"
             android:exported="false" />
     </application>
 

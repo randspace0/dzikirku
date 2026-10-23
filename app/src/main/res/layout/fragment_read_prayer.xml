@@ -7,9 +7,9 @@
 
         <variable
             name="viewModel"
-            type="com.wagyufari.dzikirqu.ui.read.prayer.ReadPrayerViewModel" />
+            type="id.gritlabs.dzikirku.ui.read.prayer.ReadPrayerViewModel" />
 
-        <import type="com.wagyufari.dzikirqu.constants.LocaleConstants" />
+        <import type="id.gritlabs.dzikirku.constants.LocaleConstants" />
 
         <import type="android.view.View" />
     </data>
