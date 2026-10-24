@@ -10,16 +10,6 @@ import id.gritlabs.dzikirku.data.Prefs
 
 object BooleanUtil {
 
-    fun Context.isReadAndWriteExternalStorageGranted(): Boolean{
-        return ContextCompat.checkSelfPermission(
-            this,
-            Manifest.permission.READ_EXTERNAL_STORAGE
-        ) == PackageManager.PERMISSION_GRANTED && ContextCompat.checkSelfPermission(
-            this,
-            Manifest.permission.WRITE_EXTERNAL_STORAGE
-        ) == PackageManager.PERMISSION_GRANTED
-    }
-
     fun Context.isLocationGranted(): Boolean {
         return ContextCompat.checkSelfPermission(
             this,
@@ -29,13 +19,6 @@ object BooleanUtil {
             Manifest.permission.ACCESS_FINE_LOCATION
         ) == PackageManager.PERMISSION_GRANTED
     }
-    fun Context.isStorageGranted(): Boolean {
-        return ContextCompat.checkSelfPermission(
-            this,
-            Manifest.permission.WRITE_EXTERNAL_STORAGE
-        ) == PackageManager.PERMISSION_GRANTED
-    }
-
     fun isXiaomi():Boolean{
         return "xiaomi".equals(Build.MANUFACTURER, ignoreCase = true)
     }

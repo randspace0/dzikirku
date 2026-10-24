@@ -1,18 +1,15 @@
 package id.gritlabs.dzikirku.ui.share
 
-import android.Manifest
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import com.google.android.material.slider.Slider
 import id.gritlabs.dzikirku.constants.LocaleConstants
 import id.gritlabs.dzikirku.constants.LocaleConstants.locale
 import id.gritlabs.dzikirku.databinding.ActivityShareImageBinding
-import id.gritlabs.dzikirku.util.BooleanUtil.isStorageGranted
 import id.gritlabs.dzikirku.util.ViewUtils
 import id.gritlabs.dzikirku.util.saveImage
 import dagger.hilt.android.AndroidEntryPoint
@@ -21,13 +18,6 @@ import dagger.hilt.android.AndroidEntryPoint
 class ShareImageActivity : AppCompatActivity() {
 
     lateinit var binding:ActivityShareImageBinding
-
-    val requestStoragePermission =
-        registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { permissions ->
-            if (permissions[Manifest.permission.WRITE_EXTERNAL_STORAGE] == true) {
-                shareImage()
-            }
-        }
 
     companion object{
 
@@ -71,11 +61,7 @@ class ShareImageActivity : AppCompatActivity() {
         binding.source.text = getSource()
         binding.shareButton.text = LocaleConstants.SHARE.locale()
         binding.shareButton.setOnClickListener {
-            if (isStorageGranted()) {
-                shareImage()
-            } else {
-                requestStoragePermission.launch(arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE))
-            }
+            shareImage()
         }
 
         binding.titleText.text = getTitleValue()
@@ -109,6 +95,7 @@ class ShareImageActivity : AppCompatActivity() {
             startActivity(Intent.createChooser(Intent(Intent.ACTION_SEND).apply {
                 type = "image/jpeg"
                 putExtra(Intent.EXTRA_STREAM, uri)
+                addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
             }, LocaleConstants.SHARE.locale()))
         }
     }

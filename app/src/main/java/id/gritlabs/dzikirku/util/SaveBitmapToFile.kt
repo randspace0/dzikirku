@@ -3,8 +3,6 @@ package id.gritlabs.dzikirku.util
 import android.content.Context
 import android.graphics.Bitmap
 import android.os.AsyncTask
-import android.os.Environment
-import id.gritlabs.dzikirku.R
 import java.io.*
 import java.text.SimpleDateFormat
 import java.util.*
@@ -36,8 +34,7 @@ class SaveBitmapToFile(private val context: Context, private val mBitmap: Bitmap
                 scaledBitmap = mBitmap
             }
 
-            val pictureDir = File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), context.resources.getString(
-                R.string.app_name))
+            val pictureDir = File(context.cacheDir, "shared")
             pictureDir.mkdirs()
 
             val fileName = "IMG_" + SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(Date()) + ".jpg"
