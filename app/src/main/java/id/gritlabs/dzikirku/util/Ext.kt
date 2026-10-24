@@ -15,7 +15,6 @@ import android.net.ConnectivityManager
 import android.net.NetworkInfo
 import android.net.Uri
 import android.os.Build
-import android.os.Environment
 import android.os.Handler
 import android.text.Editable
 import android.text.TextWatcher
@@ -360,13 +359,6 @@ fun String.getNoteList(): List<Note> {
     }
 }
 
-fun getNotesJsonCount(): Int {
-    val files = File(
-        Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS),
-        "/DzikirQu Notes/"
-    ).listFiles() ?: emptyArray()
-    return files.size
-}
 
 inline fun <T : ViewBinding> AppCompatActivity.viewBinding(
     crossinline bindingInflater: (LayoutInflater) -> T,
