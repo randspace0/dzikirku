@@ -5,15 +5,15 @@ Play policy numbers change often. Re-verify every number below in Play Console (
 
 ## 0. Blockers in this repo
 
-- [ ] Get a JDK that Gradle 7.2 supports (or upgrade the toolchain) and confirm `./gradlew :app:assembleProdDebug` builds. The package rename (#2) was never compiled.
-- [ ] Raise `targetSdk`/`compileSdk` to the level Play currently requires for new apps (API 35 in 2025; expect newer now). This forces AGP, Gradle, Kotlin and dependency upgrades, then a regression pass on: scoped storage, notification permission, exact alarms and the boot receiver, edge-to-edge insets, PendingIntent mutability flags, and `exported` on every component with an intent-filter.
+- [x] Build works: Gradle 8.4, AGP 8.2.2, Kotlin 1.9.10 on JDK 17; `assembleProdDebug` + `lintProdDebug` pass (0 lint errors). Needs JDK 17 and `-Xmx3g`.
+- [ ] `targetSdk`/`compileSdk` are now 34. Play's requirement for new apps is higher (API 35 in 2025, likely newer now: check Console). Next step needs AGP 8.6+ and an edge-to-edge pass (enforced at target 35). Done at 34: PendingIntent immutability, `exported`, notification permission. Still to test on devices: scoped storage, alarms and the boot receiver.
 - [ ] Build an Android App Bundle (`./gradlew :app:bundleProdRelease`). APKs are not accepted for new apps.
 - [ ] Release signing: create an upload keystore, keep it out of git (password manager), enrol in Play App Signing. Add a `signingConfigs` entry that reads from a gitignored `keystore.properties`.
 - [ ] Enable R8 (`isMinifyEnabled = true`, `shrinkResources = true`), add keep rules, and exercise the whole app on a release build.
 - [ ] Register `id.gritlabs.dzikirku` (and `.dev`) in Firebase, add the release and Play App Signing SHA-1/256 fingerprints, replace `app/google-services.json`, update `your_web_client_id`, restrict the API key to the package + SHA.
 - [ ] Check native libraries for 16 KB page-size support (required when targeting recent Android versions).
-- [ ] Android 13+: `POST_NOTIFICATIONS` is declared; add the runtime request (e.g. during onboarding) once `targetSdk` is 33+.
-- [ ] Android 14+: give `PraytimeForegroundService` a `foregroundServiceType` and the matching `FOREGROUND_SERVICE_<TYPE>` permission; prepare the Play foreground-service declaration.
+- [x] Android 13+: `POST_NOTIFICATIONS` declared and requested at runtime in `MainActivity` (a one-shot prompt on launch; consider moving it to onboarding).
+- [x] Foreground service: the unused `PraytimeForegroundService` and `FOREGROUND_SERVICE` permission were removed, so no Play foreground-service declaration is needed.
 - [ ] Remove unused permissions: `WRITE/READ_EXTERNAL_STORAGE` (use MediaStore/SAF), `SET_ALARM` and `WAKE_LOCK` if unused.
 - [ ] Decide on `allowBackup` and add backup rules; keep it consistent with the privacy policy.
 - [ ] Set `versionCode`/`versionName` for the first release.
