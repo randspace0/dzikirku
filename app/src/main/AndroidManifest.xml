@@ -9,7 +9,6 @@
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -71,7 +70,9 @@
             android:exported="false"
             android:screenOrientation="portrait" />
 
-        <receiver android:name="id.gritlabs.dzikirku.util.AutoStartReceiver">
+        <receiver
+            android:name="id.gritlabs.dzikirku.util.AutoStartReceiver"
+            android:exported="true">
             <intent-filter>
                 <category android:name="android.intent.category.DEFAULT" />
 
@@ -219,10 +220,6 @@
         <receiver android:name="id.gritlabs.dzikirku.util.receiver.AdzanReceiver" />
         <receiver android:name="id.gritlabs.dzikirku.util.receiver.KhatamReceiver" />
         <receiver android:name="id.gritlabs.dzikirku.util.receiver.DailyReminderReceiver" />
-
-        <service
-            android:name="id.gritlabs.dzikirku.util.foreground.PraytimeForegroundService"
-            android:exported="false" />
     </application>
 
 </manifest>

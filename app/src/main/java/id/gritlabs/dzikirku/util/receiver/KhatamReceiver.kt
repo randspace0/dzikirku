@@ -46,7 +46,7 @@ class KhatamReceiver : BroadcastReceiver() {
                     context,
                     requestCode,
                     intent,
-                    PendingIntent.FLAG_UPDATE_CURRENT
+                    PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
                 )
             }
         }
@@ -56,7 +56,7 @@ class KhatamReceiver : BroadcastReceiver() {
         notificationManager = context?.getSystemService(Context.NOTIFICATION_SERVICE) as
                 NotificationManager
 
-            context.createNotification()
+        context.createNotification()
 
             if (Prefs.khatamReminderSound != 0 && Prefs.khatamReminderSound != -1) {
                 mp.setAudioStreamType(AudioManager.STREAM_NOTIFICATION)
@@ -96,7 +96,7 @@ class KhatamReceiver : BroadcastReceiver() {
                             Prefs.quranLastRead.ayah
                         )
                     )
-                    .getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT)
+                    .getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
 
                 val notification = NotificationCompat.Builder(applicationContext, mChannelId)
                     .setContentTitle(LocaleConstants.ITS_TIME_TO_READ_THE_QURAN.locale())
