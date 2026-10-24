@@ -41,7 +41,7 @@ class DailyReminderReceiver : BroadcastReceiver() {
                     context,
                     requestCode,
                     intent,
-                    PendingIntent.FLAG_UPDATE_CURRENT
+                    PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
                 )
             }
         }
@@ -85,7 +85,7 @@ class DailyReminderReceiver : BroadcastReceiver() {
                         this,
                         0,
                         Intent(this, MainActivity::class.java),
-                        0
+                        PendingIntent.FLAG_IMMUTABLE
                     ))
                     .setSmallIcon(R.drawable.ic_dzikir)
                     .setColor(applicationContext.resources.getColor(R.color.colorPrimary))

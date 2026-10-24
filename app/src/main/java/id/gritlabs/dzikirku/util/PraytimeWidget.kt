@@ -65,7 +65,7 @@ fun updateLayout(context: Context, appWidgetManager: AppWidgetManager, appWidget
                         context,
                         0,
                         Intent(context, PraytimeActivity::class.java),
-                        0
+                        PendingIntent.FLAG_IMMUTABLE
                     )
                 )
                 appWidgetManager.updateAppWidget(appWidgetId, this)
@@ -94,7 +94,7 @@ fun updateLayout(context: Context, appWidgetManager: AppWidgetManager, appWidget
                             Prefs.quranLastRead.surah,
                             Prefs.quranLastRead.ayah
                         ),
-                        PendingIntent.FLAG_UPDATE_CURRENT
+                        PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
                     )
                 )
                 setOnClickPendingIntent(
@@ -103,7 +103,7 @@ fun updateLayout(context: Context, appWidgetManager: AppWidgetManager, appWidget
                         context,
                         0,
                         Intent(context, PraytimeActivity::class.java),
-                        0
+                        PendingIntent.FLAG_IMMUTABLE
                     )
                 )
                 setOnClickPendingIntent(
@@ -112,7 +112,7 @@ fun updateLayout(context: Context, appWidgetManager: AppWidgetManager, appWidget
                         context,
                         0,
                         Intent(context, MainActivity::class.java),
-                        0
+                        PendingIntent.FLAG_IMMUTABLE
                     )
                 )
                 appWidgetManager.updateAppWidget(appWidgetId, this)

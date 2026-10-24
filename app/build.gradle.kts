@@ -17,7 +17,7 @@ android {
     defaultConfig {
         applicationId = "id.gritlabs.dzikirku"
         minSdk = 23
-        targetSdk = 30
+        targetSdk = 34
         versionCode = 92
         versionName = "2.6.10"
 
@@ -207,12 +207,11 @@ dependencies {
     implementation("androidx.work:work-runtime-ktx:2.7.0-alpha05")
     implementation("androidx.work:work-rxjava2:2.7.0-alpha05")
 
-    implementation("com.google.android.play:core:1.10.2")
+    implementation("com.google.android.play:feature-delivery-ktx:2.1.0")
 
     implementation("com.pixplicity.easyprefs:EasyPrefs:1.10.0")
 
     implementation("org.jsoup:jsoup:1.14.3")
-    implementation("com.github.SanojPunchihewa:InAppUpdater:1.0.5")
 
     implementation("net.danlew:android.joda:2.10.12.2")
 

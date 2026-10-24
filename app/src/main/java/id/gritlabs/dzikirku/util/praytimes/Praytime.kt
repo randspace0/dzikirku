@@ -12,7 +12,6 @@ import id.gritlabs.dzikirku.model.PrayerTime
 import id.gritlabs.dzikirku.util.AlarmHelper
 import id.gritlabs.dzikirku.util.BooleanUtil.isLocationGranted
 import id.gritlabs.dzikirku.util.PraytimeWidget
-import id.gritlabs.dzikirku.util.foreground.PraytimeForegroundService
 import id.gritlabs.dzikirku.util.receiver.AdzanReceiver
 import id.gritlabs.dzikirku.util.receiver.TickReceiver
 import java.util.*
