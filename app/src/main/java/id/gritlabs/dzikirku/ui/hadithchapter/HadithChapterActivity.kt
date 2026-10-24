@@ -1,12 +1,12 @@
 package id.gritlabs.dzikirku.ui.hadithchapter
 
+import id.gritlabs.dzikirku.util.fromJson
+
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
 import id.gritlabs.dzikirku.BR
 import id.gritlabs.dzikirku.R
 import id.gritlabs.dzikirku.base.BaseActivity
@@ -90,7 +90,7 @@ class HadithChapterActivity : BaseActivity<ActivityHadithChapterBinding, HadithC
                 this,
                 "json/hadith/${hadith?.metadata}.json"
             )
-            return Gson().fromJson(json, object : TypeToken<List<HadithChapter>>() {}.type)
+            return json.fromJson<List<HadithChapter>>()
         }
     }
 

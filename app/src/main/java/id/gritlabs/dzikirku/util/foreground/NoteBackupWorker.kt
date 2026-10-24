@@ -1,5 +1,9 @@
 package id.gritlabs.dzikirku.util.foreground
 
+import id.gritlabs.dzikirku.util.toJsonString
+
+import id.gritlabs.dzikirku.util.fromJson
+
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Context
@@ -10,7 +14,6 @@ import androidx.work.*
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
-import com.google.gson.Gson
 import id.gritlabs.dzikirku.R
 import id.gritlabs.dzikirku.constants.NotificationConstants
 import id.gritlabs.dzikirku.data.ApiService
@@ -38,13 +41,13 @@ class NoteBackupWorker(appContext: Context, workerParams: WorkerParameters):
                             Constraints.Builder().setRequiredNetworkType(NetworkType.CONNECTED)
                                 .build()
                         )
-                        .setInputData(workDataOf(EXTRA_NOTE to if (note != null) Gson().toJson(note) else null))
+                        .setInputData(workDataOf(EXTRA_NOTE to if (note != null) note.toJsonString() else null))
                         .build()
                 )
         }
 
         fun NoteBackupWorker.getNote():Note?{
-            return Gson().fromJson(inputData.getString(EXTRA_NOTE), Note::class.java)
+            return inputData.getString(EXTRA_NOTE)?.fromJson<Note>()
         }
     }
 
@@ -55,7 +58,7 @@ class NoteBackupWorker(appContext: Context, workerParams: WorkerParameters):
             val notes = applicationContext.getNoteDao().getNotesSuspended()
             if (notes.isEmpty() || Firebase.auth.currentUser == null) return Result.success()
             networkCall({ ApiService.create().syncNotes(notes.map { it.toRequestModel() }) })
-            FirebaseStorage.getInstance().reference.child("notes/${Firebase.auth.currentUser?.uid}.json").putBytes(Gson().toJson(notes).toByteArray(Charsets.UTF_8)).await()
+            FirebaseStorage.getInstance().reference.child("notes/${Firebase.auth.currentUser?.uid}.json").putBytes(notes.toJsonString().toByteArray(Charsets.UTF_8)).await()
         }
 
         return Result.success()
@@ -63,13 +66,13 @@ class NoteBackupWorker(appContext: Context, workerParams: WorkerParameters):
 
 //    suspend fun syncSharedReference(note:Note){
 //        if (note.shareId?.isBlank() == false) {
-//            Firebase.storage.reference.child("notes/shared/${note.shareId}.json").putBytes(Gson().toJson(note.apply {
+//            Firebase.storage.reference.child("notes/shared/${note.shareId}.json").putBytes((note.apply {
 //                author = Author(
 //                    uid = Firebase.auth.currentUser?.uid.toString(),
 //                    name = Firebase.auth.currentUser?.displayName.toString(),
 //                    profilePicture = Firebase.auth.currentUser?.photoUrl.toString()
 //                )
-//            }).toByteArray(Charsets.UTF_8)).await()
+//            }).toJsonString().toByteArray(Charsets.UTF_8)).await()
 //        }
 //    }
 

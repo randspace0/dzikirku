@@ -1,11 +1,11 @@
 package id.gritlabs.dzikirku.ui.read.quran.listed
 
+import id.gritlabs.dzikirku.util.fromJson
+
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.liveData
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
 import id.gritlabs.dzikirku.base.BaseNavigator
 import id.gritlabs.dzikirku.base.BaseViewModel
 import id.gritlabs.dzikirku.data.AppDataManager
@@ -41,12 +41,10 @@ class QuranListViewModel @Inject constructor(
     }
 
     private suspend fun getAyahData(query: AyahQuery): ArrayList<Any> {
-        val wbw = Gson().fromJson<ArrayList<AyahWbw>>(
-            FileUtils.getJsonStringFromAssets(
+        val wbw = FileUtils.getJsonStringFromAssets(
                 dataManager.mContext,
                 "json/quran/wbw/${query.id.toInt()}.json"
-            ), object : TypeToken<ArrayList<AyahWbw>>() {}.type
-        )
+            ).fromJson<ArrayList<AyahWbw>>()
         val data = when (query.type) {
             AyahQueryType.Surah -> ayahDao.getAyahBySurahId(query.id.toInt())
             AyahQueryType.Juz -> ayahDao.getAyahByJuz(query.id.toInt(), 9999)

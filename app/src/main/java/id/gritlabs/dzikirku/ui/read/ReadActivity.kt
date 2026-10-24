@@ -1,12 +1,12 @@
 package id.gritlabs.dzikirku.ui.read
 
+import id.gritlabs.dzikirku.util.fromJson
+
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
 import id.gritlabs.dzikirku.R
 import id.gritlabs.dzikirku.constants.LocaleConstants
 import id.gritlabs.dzikirku.constants.LocaleConstants.locale
@@ -165,13 +165,10 @@ class ReadActivity : AppCompatActivity() {
                         if (ayahLineDao.getAyahLine().isEmpty()){
                             for (i in 1..604) {
                                 ayahLineDao.putAyahLine(
-                                    Gson().fromJson<ArrayList<AyahLine>>(
-                                        FileUtils.getJsonStringFromAssets(
+                                    (FileUtils.getJsonStringFromAssets(
                                             context,
                                             "json/quran/paged/page$i.json"
-                                        ) {},
-                                        object : TypeToken<ArrayList<AyahLine>>() {}.type,
-                                    ).map {
+                                        ) {}).fromJson<ArrayList<AyahLine>>().map {
                                         it.apply {
                                             this.page = i
                                         }

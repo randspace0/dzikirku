@@ -1,5 +1,7 @@
 package id.gritlabs.dzikirku.model
 
+import kotlinx.serialization.Serializable
+
 import android.os.Parcelable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
@@ -7,6 +9,7 @@ import androidx.room.PrimaryKey
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
+@Serializable
 data class Hadith(
     val id: String,
     val name: String,
@@ -17,12 +20,15 @@ data class Hadith(
 ) : Parcelable
 
 @Parcelize
+@Serializable
 data class HadithChapter(val title:ArrayList<LanguageString>, val startIndex: Int, val endIndex: Int, var chapters:ArrayList<HadithSubChapter> = arrayListOf()):Parcelable
 @Parcelize
+@Serializable
 data class HadithSubChapter(val title:ArrayList<LanguageString>, val chapterIndex:Int?=null, val startIndex:Int?, val endIndex:Int?):Parcelable
 
 @Entity(tableName = "hadithData")
 @Parcelize
+@Serializable
 data class HadithData(
     @ColumnInfo(name = "index")
     val index: String,

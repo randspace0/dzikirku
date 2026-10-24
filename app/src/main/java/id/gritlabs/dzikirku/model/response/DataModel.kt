@@ -1,9 +1,12 @@
 package id.gritlabs.dzikirku.model.response
 
-import com.google.gson.annotations.SerializedName
+import kotlinx.serialization.Serializable
 
+import kotlinx.serialization.SerialName
+
+@Serializable
 data class DataModel<out T>(
-        @SerializedName("data") val data: T? = null,
-        @SerializedName("next_cursor") val nextCursor: Int? = 0,
-        @SerializedName("use_tfa") val use_tfa: Boolean? = false
+        @SerialName("data") val data: T? = null,
+        @SerialName("next_cursor") val nextCursor: Int? = 0,
+        @SerialName("use_tfa") val use_tfa: Boolean? = false
 )

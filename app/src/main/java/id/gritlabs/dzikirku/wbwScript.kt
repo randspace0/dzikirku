@@ -1,7 +1,9 @@
 package id.gritlabs.dzikirku
 
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
+import id.gritlabs.dzikirku.util.toJsonString
+
+import id.gritlabs.dzikirku.util.fromJson
+
 import id.gritlabs.dzikirku.model.AyahWbw
 import id.gritlabs.dzikirku.model.LanguageString
 import org.jsoup.Jsoup
@@ -21,30 +23,21 @@ fun main() {
     join()
 
 //    for (i in 1..114){
-//        val ayah = Gson().fromJson<ArrayList<AyahWbw>>(
-//            File("$i.json").inputStream().readBytes().toString(Charsets.UTF_8),
-//            object : TypeToken<ArrayList<AyahWbw>>() {}.type
-//        ).maxOf { it.ayah }
+//        val ayah = (//            File("$i.json").inputStream().readBytes().toString(Charsets.UTF_8)).fromJson<ArrayList<AyahWbw>>().maxOf { it.ayah }
 //        println(ayah)
 //    }
 }
 
 fun join() {
-    val english = Gson().fromJson<ArrayList<AyahWbw>>(
-        File("english.json").inputStream().readBytes().toString(Charsets.UTF_8),
-        object : TypeToken<ArrayList<AyahWbw>>() {}.type
-    )
-    val bahasa = Gson().fromJson<ArrayList<AyahWbw>>(
-        File("bahasa.json").inputStream().readBytes().toString(Charsets.UTF_8),
-        object : TypeToken<ArrayList<AyahWbw>>() {}.type
-    )
+    val english = (File("english.json").inputStream().readBytes().toString(Charsets.UTF_8)).fromJson<ArrayList<AyahWbw>>()
+    val bahasa = (File("bahasa.json").inputStream().readBytes().toString(Charsets.UTF_8)).fromJson<ArrayList<AyahWbw>>()
 
     english.forEachIndexed { index, wbw ->
         bahasa[index].text.filter { it.language == "bahasa" }.firstOrNull()
             ?.let { wbw.text.add(it) }
     }
 
-    writeToFile(Gson().toJson(english), "2")
+    writeToFile(english.toJsonString(), "2")
 }
 
 fun write(data: List<Element>, language: String) {
@@ -73,6 +66,6 @@ fun write(data: List<Element>, language: String) {
             }
         }
     }
-    writeToFile(Gson().toJson(wbw), language)
+    writeToFile(wbw.toJsonString(), language)
 }
 

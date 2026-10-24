@@ -1,13 +1,19 @@
 package id.gritlabs.dzikirku.model.legacy
 
-import com.google.gson.annotations.SerializedName
+import kotlinx.serialization.Serializable
+
+import kotlinx.serialization.ExperimentalSerializationApi
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.json.JsonNames
 import id.gritlabs.dzikirku.model.Author
 
+@OptIn(ExperimentalSerializationApi::class)
+@Serializable
 data class NoteLegacy(
     var id:Int? =null,
     var title:String?="",
     var subtitle:String?="",
-    @SerializedName("speaker", alternate = ["presenter"])
+    @SerialName("speaker") @JsonNames("presenter")
     var speaker: String?=null,
     var location: String?=null,
     var date:String?="",

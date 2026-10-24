@@ -1,11 +1,14 @@
 package id.gritlabs.dzikirku.model
 
+import kotlinx.serialization.Serializable
+
 import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import kotlinx.android.parcel.Parcelize
 
 @Entity(tableName = "prayer")
+@Serializable
 data class Prayer(
     @PrimaryKey
     var id:String,
@@ -16,6 +19,7 @@ data class Prayer(
 
 @Entity(tableName = "prayerData")
 @Parcelize
+@Serializable
 data class PrayerData(
     @PrimaryKey
     var id:String="null",
@@ -30,6 +34,7 @@ data class PrayerData(
 ):Parcelable
 
 @Parcelize
+@Serializable
 data class Link(
     val title:ArrayList<LanguageString>?=null,
     val subtitle:ArrayList<LanguageString>?=null,

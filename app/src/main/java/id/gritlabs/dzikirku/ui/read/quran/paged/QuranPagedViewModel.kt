@@ -1,9 +1,9 @@
 package id.gritlabs.dzikirku.ui.read.quran.paged
 
+import id.gritlabs.dzikirku.util.fromJson
+
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
 import id.gritlabs.dzikirku.SeparatorItem
 import id.gritlabs.dzikirku.WordItem
 import id.gritlabs.dzikirku.base.BaseViewModel
@@ -43,7 +43,7 @@ class QuranPagedViewModel @Inject constructor(
     val juzNumber = MutableLiveData<String>()
 
     init {
-        separator.addAll(Gson().fromJson(FileUtils.getJsonStringFromAssets(dataManager.mContext, "json/quran/paged/separator.json"), object:TypeToken<ArrayList<SeparatorItem>>(){}.type))
+        separator.addAll(FileUtils.getJsonStringFromAssets(dataManager.mContext, "json/quran/paged/separator.json").fromJson<ArrayList<SeparatorItem>>())
     }
 
     fun getSurahName(id:Int){

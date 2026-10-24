@@ -1,8 +1,15 @@
 package id.gritlabs.dzikirku.data
 
+import id.gritlabs.dzikirku.util.AppJson
+import id.gritlabs.dzikirku.util.LatLngSerializer
+import id.gritlabs.dzikirku.util.toJsonString
+import kotlinx.serialization.decodeFromString
+import kotlinx.serialization.encodeToString
+
+import id.gritlabs.dzikirku.util.fromJson
+
 import androidx.appcompat.app.AppCompatDelegate
 import com.google.android.gms.maps.model.LatLng
-import com.google.gson.Gson
 import com.pixplicity.easyprefs.library.Prefs
 import id.gritlabs.dzikirku.R
 import id.gritlabs.dzikirku.constants.ReadModeConstants
@@ -244,14 +251,12 @@ object Prefs {
         }
 
     var quranLastRead: QuranLastRead
-        get() = Gson().fromJson(
-            Prefs.getString(
+        get() = Prefs.getString(
                 PREF_KEY_QURAN_LAST_READ,
-                Gson().toJson(QuranLastRead(1, 1))
-            ), QuranLastRead::class.java
-        )
+                QuranLastRead(1, 1).toJsonString()
+            ).fromJson<QuranLastRead>()
         set(value) {
-            Prefs.putString(PREF_KEY_QURAN_LAST_READ, Gson().toJson(value))
+            Prefs.putString(PREF_KEY_QURAN_LAST_READ, value.toJsonString())
         }
 
     var arabicTextSize: Float
@@ -320,10 +325,8 @@ object Prefs {
         }
 
     var praytime: PrayerTime
-        get() = Gson().fromJson(
-            Prefs.getString(
-                PREF_KEY_PRAYERTIME, Gson().toJson(
-                    PrayerTime(
+        get() = Prefs.getString(
+                PREF_KEY_PRAYERTIME, PrayerTime(
                         null,
                         "00:00",
                         "00:00",
@@ -332,23 +335,18 @@ object Prefs {
                         "00:00",
                         "00:00",
                         "00:00"
-                    )
-                )
-            ),
-            PrayerTime::class.java
-        )
+                    ).toJsonString()
+            ).fromJson<PrayerTime>()
         set(value) {
-            Prefs.putString(PREF_KEY_PRAYERTIME, Gson().toJson(value))
+            Prefs.putString(PREF_KEY_PRAYERTIME, value.toJsonString())
         }
     var userCoordinates: LatLng
-        get() = Gson().fromJson(
-            Prefs.getString(
+        get() = Prefs.getString(
                 PREF_KEY_USER_COORDINATES,
-                Gson().toJson(LatLng(0.0, 0.0))
-            ), LatLng::class.java
-        )
+                AppJson.encodeToString(LatLngSerializer, LatLng(0.0, 0.0))
+            ).let { AppJson.decodeFromString(LatLngSerializer, it) }
         set(value) {
-            Prefs.putString(PREF_KEY_USER_COORDINATES, Gson().toJson(value))
+            Prefs.putString(PREF_KEY_USER_COORDINATES, AppJson.encodeToString(LatLngSerializer, value))
         }
     var userCity: String
         get() = Prefs.getString(PREF_KEY_USER_CITY, "")

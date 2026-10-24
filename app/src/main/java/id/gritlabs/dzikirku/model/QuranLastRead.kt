@@ -1,5 +1,7 @@
 package id.gritlabs.dzikirku.model
 
+import kotlinx.serialization.Serializable
+
 import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -7,6 +9,7 @@ import kotlinx.android.parcel.Parcelize
 
 @Entity(tableName = "quranLastRead")
 @Parcelize
+@Serializable
 data class QuranLastRead(
     @PrimaryKey
     var surah:Int,
@@ -19,6 +22,7 @@ data class QuranLastRead(
     var state:String = KhatamStateConstants.ACTIVE
 }
 
+@Serializable
 data class QuranLastReadString(
     val surah:String,
     val ayah:String,

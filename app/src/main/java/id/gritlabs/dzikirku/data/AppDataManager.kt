@@ -1,11 +1,11 @@
 package id.gritlabs.dzikirku.data
 
+import id.gritlabs.dzikirku.util.fromJson
+
 import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.liveData
 import com.github.msarhan.ummalqura.calendar.UmmalquraCalendar
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
 import id.gritlabs.dzikirku.VersesItem
 import id.gritlabs.dzikirku.data.room.BookmarkDatabase
 import id.gritlabs.dzikirku.data.room.NotesDatabase
@@ -37,19 +37,14 @@ class AppDataManager @Inject constructor(
     }
 
     fun getJuz(): ArrayList<Juz> {
-        return Gson().fromJson(
-            FileUtils.getJsonStringFromAssets(mContext, "json/quran/juz.json"),
-            object : TypeToken<ArrayList<Juz>>() {}.type
-        )
+        return FileUtils.getJsonStringFromAssets(mContext, "json/quran/juz.json").fromJson<ArrayList<Juz>>()
     }
 
     fun getQuranByPage(page: Int): ArrayList<VersesItem> {
-        return Gson().fromJson(
-            FileUtils.getJsonStringFromAssets(
+        return FileUtils.getJsonStringFromAssets(
                 mContext,
                 "json/quran/paged/page$page.json"
-            ), object : TypeToken<ArrayList<VersesItem>>() {}.type
-        )
+            ).fromJson<ArrayList<VersesItem>>()
     }
 
     fun isFirstAyahOfJuz(juz: Int, chapterId: Int, verseNumber: Int): Boolean {
@@ -60,25 +55,16 @@ class AppDataManager @Inject constructor(
     }
 
     fun getHizb(): List<Hizb> {
-        return Gson().fromJson<ArrayList<Hizb>>(
-            FileUtils.getJsonStringFromAssets(mContext, "json/quran/hizb.json"),
-            object : TypeToken<ArrayList<Hizb>>() {}.type
-        )
+        return FileUtils.getJsonStringFromAssets(mContext, "json/quran/hizb.json").fromJson<ArrayList<Hizb>>()
     }
 
     fun getHadithById(id: String): List<HadithData> {
-        return Gson().fromJson<ArrayList<HadithData>>(
-            FileUtils.getJsonStringFromAssets(mContext, "json/hadith/$id.json"),
-            object : TypeToken<ArrayList<HadithData>>() {}.type
-        )
+        return FileUtils.getJsonStringFromAssets(mContext, "json/hadith/$id.json").fromJson<ArrayList<HadithData>>()
     }
 
     fun getJuzWithHizb(juzNumber: Int): List<Any> {
         val juz = getJuz()
-        val hizb = Gson().fromJson<ArrayList<Hizb>>(
-            FileUtils.getJsonStringFromAssets(mContext, "json/quran/hizb.json"),
-            object : TypeToken<ArrayList<Hizb>>() {}.type
-        )
+        val hizb = FileUtils.getJsonStringFromAssets(mContext, "json/quran/hizb.json").fromJson<ArrayList<Hizb>>()
         return arrayListOf<Any>().apply {
             juz.forEach {
                 this.add(it)

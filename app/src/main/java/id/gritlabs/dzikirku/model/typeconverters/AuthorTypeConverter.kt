@@ -1,26 +1,23 @@
 package id.gritlabs.dzikirku.model.typeconverters
 
 import androidx.room.TypeConverter
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
+import id.gritlabs.dzikirku.util.AppJson
+import kotlinx.serialization.decodeFromString
+import kotlinx.serialization.encodeToString
 import id.gritlabs.dzikirku.model.Author
 
 class AuthorTypeConverter {
     @TypeConverter
     fun stringToSomeObjectList(data: String?): Author? {
-        val gson = Gson()
         if (data == null) {
             return Author(uid = "", name = "", profilePicture = "")
         }
 
-        val listType = object : TypeToken<Author>() {
-        }.type
-        return gson.fromJson(data, listType)
+        return AppJson.decodeFromString<Author?>(data)
     }
 
     @TypeConverter
     fun someObjectListToString(someObjects: Author?): String {
-        val gson = Gson()
-        return gson.toJson(someObjects)
+        return AppJson.encodeToString(someObjects)
     }
 }

@@ -1,7 +1,9 @@
 package id.gritlabs.dzikirku
 
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
+import id.gritlabs.dzikirku.util.toJsonString
+
+import id.gritlabs.dzikirku.util.fromJson
+
 import id.gritlabs.dzikirku.model.Ayah
 import id.gritlabs.dzikirku.model.LanguageString
 import java.io.*
@@ -20,10 +22,7 @@ fun saveQuran(name: String) {
 }
 
 fun getLegacyQuran(number:Int):ArrayList<Ayah>{
-    return Gson().fromJson(
-        getJsonString("quran$number.json"),
-        object : TypeToken<ArrayList<Ayah>>() {}.type
-    )
+    return getJsonString("quran$number.json").fromJson<ArrayList<Ayah>>()
 }
 
 fun ArrayList<Ayah>.writeQuran(quran: List<AyahData>, part: Int) {
@@ -42,7 +41,7 @@ fun ArrayList<Ayah>.writeQuran(quran: List<AyahData>, part: Int) {
                 .replace("ي۟", "ي"), language = "arabic"))
         }
     }
-    writeToFile(Gson().toJson(result), "quran$part")
+    writeToFile(result.toJsonString(), "quran$part")
 }
 
 data class AyahData(val text: String, val ayah: Int, val surah: Int)

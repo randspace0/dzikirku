@@ -1,5 +1,7 @@
 package id.gritlabs.dzikirku.model
 
+import kotlinx.serialization.Serializable
+
 import android.content.Context
 import android.os.Parcelable
 import android.widget.Toast
@@ -9,7 +11,9 @@ import androidx.room.Ignore
 import androidx.room.PrimaryKey
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import com.google.gson.annotations.SerializedName
+import kotlinx.serialization.ExperimentalSerializationApi
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.json.JsonNames
 import id.gritlabs.dzikirku.data.ApiService
 import id.gritlabs.dzikirku.data.room.dao.getNoteDao
 import id.gritlabs.dzikirku.data.room.dao.getNotePropertyDao
@@ -27,6 +31,8 @@ import java.util.*
 
 @Entity(tableName = "note")
 @Parcelize
+@OptIn(ExperimentalSerializationApi::class)
+@Serializable
 data class Note(
     @PrimaryKey(autoGenerate = true)
     var id:Int? =null,
@@ -34,7 +40,7 @@ data class Note(
     var title:String?="",
     @ColumnInfo(name = "subtitle")
     var subtitle:String?="",
-    @SerializedName("speaker", alternate = ["presenter"])
+    @SerialName("speaker") @JsonNames("presenter")
     @ColumnInfo(name = "presenter")
     var speaker:Speaker?=null,
     @ColumnInfo(name = "location")
@@ -56,7 +62,7 @@ data class Note(
     @ColumnInfo(name = "share_id")
     var shareId:String?=null,
     @ColumnInfo(name = "is_public")
-    @SerializedName("is_public")
+    @SerialName("is_public")
     var isPublic:Boolean?= null,
     @Ignore
     var author:Author?= null,
@@ -82,10 +88,13 @@ data class Note(
 }
 
 @Parcelize
+@Serializable
 class Author(var uid:String?, var name:String?, var profilePicture:String?):Parcelable
 @Parcelize
+@Serializable
 class Speaker(var id:Int?=null, var name:String?=null, var verified:Boolean?=null):Parcelable
 @Parcelize
+@Serializable
 class Location(var id:Int?=null, var name:String?=null, var verified:Boolean?=null):Parcelable
 
 class NoteViewMode{
@@ -206,6 +215,7 @@ data class NoteFolder(
 
 @Entity(tableName = "noteProperty")
 @Parcelize
+@Serializable
 data class NoteProperty(
     @PrimaryKey(autoGenerate = true)
     val id:Int? =null,

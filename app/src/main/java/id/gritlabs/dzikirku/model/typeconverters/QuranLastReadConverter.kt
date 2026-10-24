@@ -1,14 +1,14 @@
 package id.gritlabs.dzikirku.model.typeconverters
 
 import androidx.room.TypeConverter
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
+import id.gritlabs.dzikirku.util.AppJson
+import kotlinx.serialization.decodeFromString
+import kotlinx.serialization.encodeToString
 import id.gritlabs.dzikirku.model.QuranLastRead
 
 class QuranLastReadConverter {
     @TypeConverter
     fun stringToSomeObjectList(data: String?): QuranLastRead {
-        val gson = Gson()
         if (data == null) {
             return QuranLastRead(
                 surah = 0,
@@ -19,14 +19,11 @@ class QuranLastReadConverter {
             )
         }
 
-        val listType = object : TypeToken<QuranLastRead>() {
-        }.type
-        return gson.fromJson(data, listType)
+        return AppJson.decodeFromString<QuranLastRead>(data)
     }
 
     @TypeConverter
     fun someObjectListToString(someObjects: QuranLastRead): String {
-        val gson = Gson()
-        return gson.toJson(someObjects)
+        return AppJson.encodeToString(someObjects)
     }
 }

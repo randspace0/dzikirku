@@ -1,19 +1,20 @@
 package id.gritlabs.dzikirku.model.typeconverters
 
 import androidx.room.TypeConverter
-import com.google.gson.Gson
+import id.gritlabs.dzikirku.util.AppJson
+import kotlinx.serialization.decodeFromString
+import kotlinx.serialization.encodeToString
 import id.gritlabs.dzikirku.model.Location
 
 class LocationConverter {
     @TypeConverter
     fun stringToSomeObjectList(data: String?): Location? {
-        val gson = Gson()
         if (data == null) {
             return null
         }
 
         val speaker = try{
-            gson.fromJson(data, Location::class.java)
+            AppJson.decodeFromString<Location>(data)
         } catch (e:Exception){
             Location(name = data)
         }
@@ -22,7 +23,6 @@ class LocationConverter {
 
     @TypeConverter
     fun someObjectListToString(someObjects: Location?): String {
-        val gson = Gson()
-        return gson.toJson(someObjects)
+        return AppJson.encodeToString(someObjects)
     }
 }

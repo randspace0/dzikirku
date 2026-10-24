@@ -22,8 +22,7 @@ object Versions{
     val lifecycleCoroutines = "2.3.0"
     val cameraX = "1.0.0-alpha03"
     val glide = "4.11.0"
-    val retrofit = "2.9.0"
-    val gson = "2.8.4"
+    val retrofit = "2.11.0"
 }
 
 object hiltDependencies{
@@ -51,9 +50,7 @@ object jetpackDependencies{
 }
 
 object retrofitDependencies{
-    val gson = "com.google.code.gson:gson:${Versions.gson}"
     val retrofit= "com.squareup.retrofit2:retrofit:${Versions.retrofit}"
-    val gsonConverter =  "com.squareup.retrofit2:converter-gson:${Versions.retrofit}"
 }
 
 object glideDependencies{

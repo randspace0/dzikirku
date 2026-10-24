@@ -1,5 +1,7 @@
 package id.gritlabs.dzikirku.model
 
+import kotlinx.serialization.Serializable
+
 import android.content.Context
 import android.widget.Toast
 import androidx.room.ColumnInfo
@@ -13,6 +15,7 @@ import id.gritlabs.dzikirku.util.io
 import id.gritlabs.dzikirku.util.main
 
 @Entity(tableName = "ayah")
+@Serializable
 data class Ayah(
     @PrimaryKey(autoGenerate = true)
     val id:Int,
@@ -69,6 +72,7 @@ data class Ayah(
 }
 
 @Entity(tableName = "ayahLine")
+@Serializable
 data class AyahLine(
     @PrimaryKey(autoGenerate = true)
     val id:Int,
@@ -87,6 +91,7 @@ data class AyahLine(
 )
 
 
+@Serializable
 data class AyahWbw(
     val surah: Int,
     val ayah: Int,
@@ -94,6 +99,7 @@ data class AyahWbw(
     val text: ArrayList<LanguageString>
 )
 
+@Serializable
 data class AyahLineWord(
     val line_number: Int? = null,
     val id: Int? = null,

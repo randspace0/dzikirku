@@ -3,7 +3,9 @@ package id.gritlabs.dzikirku.data
 import id.gritlabs.dzikirku.QuranApi
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
+import id.gritlabs.dzikirku.util.AppJson
+import okhttp3.MediaType.Companion.toMediaType
+import retrofit2.converter.kotlinx.serialization.asConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
@@ -25,7 +27,7 @@ interface QuranService {
 
             return Retrofit.Builder()
                 .baseUrl("https://api.quran.com/")
-                .addConverterFactory(GsonConverterFactory.create())
+                .addConverterFactory(AppJson.asConverterFactory("application/json".toMediaType()))
                 .client(httpClient.build())
                 .build()
                 .create(QuranService::class.java)
