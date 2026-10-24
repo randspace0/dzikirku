@@ -36,3 +36,8 @@ output.json
 #NDK
 obj/
 .externalNativeBuild
+
+# Release signing
+keystore.properties
+*.jks
+*.keystore

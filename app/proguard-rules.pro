@@ -19,3 +19,21 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+# --- Dzikirku release rules ---
+
+# Optional TLS/markdown providers probed by okhttp and Markwon (from R8 missing_rules.txt)
+-dontwarn org.bouncycastle.jsse.**
+-dontwarn org.conscrypt.**
+-dontwarn org.openjsse.**
+-dontwarn org.commonmark.ext.gfm.strikethrough.Strikethrough
+
+# Gson reflects on field names and generic types
+-keepattributes Signature, *Annotation*, EnclosingMethod, InnerClasses
+-keep class * extends com.google.gson.reflect.TypeToken
+-keepclassmembers,allowobfuscation class * {
+    @com.google.gson.annotations.SerializedName <fields>;
+}
+
+# JSON, Firestore and Room-converted models are matched by field name at runtime
+-keepclassmembers class id.gritlabs.dzikirku.model.** { *; }
+-keepclassmembers class id.gritlabs.dzikirku.data.** { *; }
