@@ -1,9 +1,9 @@
 package id.gritlabs.dzikirku.util
 
+import androidx.core.content.FileProvider
 import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
-import android.media.MediaScannerConnection
 import android.net.Uri
 import android.os.CountDownTimer
 import android.view.View
@@ -29,17 +29,9 @@ fun tick(millisInFuture:Long, interval:Long,onTick:()->Unit):CountDownTimer{
 fun Context.saveImage(bitmap: Bitmap?, onSave:(Uri?)->Unit){
     bitmap?.let {
         SaveBitmapToFile.getInstance(this, it) { file ->
-        if (file != null) {
-            MediaScannerConnection.scanFile(
-                this,
-                arrayOf(file.absolutePath),
-                null
-            ) { path: String?, uri: Uri? ->
-                onSave(uri)
-            }
-        }
-        null
-    }.execute()
+            file?.let { f -> onSave(FileProvider.getUriForFile(this, "$packageName.fileprovider", f)) }
+            null
+        }.execute()
     }
 }
 
