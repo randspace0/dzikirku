@@ -9,8 +9,8 @@ plugins {
 }
 
 android {
-    compileSdk = 33
-    buildToolsVersion = "33.0.1"
+    namespace = "id.gritlabs.dzikirku"
+    compileSdk = 34
 
     flavorDimensions("default")
 
@@ -114,7 +114,7 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.1.1"
+        kotlinCompilerExtensionVersion = "1.5.3"
     }
 
 }
@@ -123,7 +123,7 @@ android {
 dependencies {
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
 
-    implementation("org.jetbrains.kotlin:kotlin-stdlib:1.6.21")
+    implementation("org.jetbrains.kotlin:kotlin-stdlib:1.9.10")
 
     implementation("androidx.navigation:navigation-ui-ktx:2.3.5")
     implementation("androidx.navigation:navigation-fragment-ktx:2.3.5")
@@ -139,9 +139,9 @@ dependencies {
     api("com.google.dagger:dagger-android-support:2.37")
     kapt("com.google.dagger:dagger-android-processor:2.37")
     //(Dagger - Hilt)
-    implementation("com.google.dagger:hilt-android:2.38.1")
+    implementation("com.google.dagger:hilt-android:2.48")
     implementation("androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha03")
-    kapt("com.google.dagger:hilt-android-compiler:2.38.1")
+    kapt("com.google.dagger:hilt-android-compiler:2.48")
 
     implementation(kotlinDependencies.kotlin)
     implementation(kotlinDependencies.coroutinesCore)
@@ -175,6 +175,7 @@ dependencies {
 
     implementation(roomDependencies.room)
     implementation(roomDependencies.ktx)
+    implementation(roomDependencies.rxjava2)
     kapt(roomDependencies.compiler)
 
     implementation(pagingDependencies.paging)
@@ -191,7 +192,7 @@ dependencies {
     implementation("io.reactivex.rxjava2:rxjava:2.2.21")
     implementation("io.reactivex.rxjava2:rxandroid:2.1.1")
 
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.3.1")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.7.3")
 
     implementation("com.github.msarhan:ummalqura-calendar:1.1.9")
 

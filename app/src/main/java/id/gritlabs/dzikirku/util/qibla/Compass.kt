@@ -14,8 +14,8 @@ class Compass(context: Context) : SensorEventListener {
 
     private var listener: CompassListener? = null
     private val sensorManager: SensorManager
-    private val gsensor: Sensor
-    private val msensor: Sensor
+    private val gsensor: Sensor?
+    private val msensor: Sensor?
     private val mGravity = FloatArray(3)
     private val mGeomagnetic = FloatArray(3)
     private val R = FloatArray(9)

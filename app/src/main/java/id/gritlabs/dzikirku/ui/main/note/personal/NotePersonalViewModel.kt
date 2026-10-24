@@ -7,7 +7,7 @@ import androidx.activity.result.IntentSenderRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Transformations
+import androidx.lifecycle.switchMap
 import com.google.android.gms.auth.api.identity.GetSignInIntentRequest
 import com.google.android.gms.auth.api.identity.Identity
 import com.google.firebase.auth.FirebaseUser
@@ -61,7 +61,7 @@ class NotePersonalViewModel @Inject constructor(
 
     val deletedNotes = dataManager.mNoteDatabase.noteDao().getDeletedNote()
 
-    val notes = Transformations.switchMap(TripleTrigger(sortBy, isSortAsc, selectedFolder)) {
+    val notes = TripleTrigger(sortBy, isSortAsc, selectedFolder).switchMap {
         if (it.third == deletedFolderId) {
             dataManager.mNoteDatabase.noteDao().getDeletedNote()
         } else {
