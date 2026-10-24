@@ -212,7 +212,6 @@ dependencies {
     implementation("com.pixplicity.easyprefs:EasyPrefs:1.10.0")
 
     implementation("org.jsoup:jsoup:1.14.3")
-    implementation("com.github.SanojPunchihewa:InAppUpdater:1.0.5")
 
     implementation("net.danlew:android.joda:2.10.12.2")
 
