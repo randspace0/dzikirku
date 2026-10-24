@@ -39,6 +39,7 @@ class NoteComposerViewModel @Inject constructor(dataManager: AppDataManager) :
                     NotePropertyType.Folder -> {
                         folder.value = obj.property.content
                     }
+                    else -> {}
                 }
 
                 when(obj.type){
@@ -47,6 +48,7 @@ class NoteComposerViewModel @Inject constructor(dataManager: AppDataManager) :
                         tags.addAll(obj.properties?.map { it.content }?.toHashSet()?.toCollection(
                             arrayListOf()) ?: arrayListOf())
                     }
+                    else -> {}
                 }
             }
             is SettingsEvent->{

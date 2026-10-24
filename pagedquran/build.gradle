@@ -3,7 +3,8 @@ plugins {
     id 'kotlin-android'
 }
 android {
-    compileSdk 33
+    namespace 'com.wagyufari.pagedquran'
+    compileSdk 34
 
     defaultConfig {
         minSdk 23

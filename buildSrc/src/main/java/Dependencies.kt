@@ -3,8 +3,8 @@ object Versions{
     val hilt = "2.31.2-alpha"
     val hiltViewModel = "1.0.0-alpha02"
     val hiltAndroidX = "1.0.0-beta01"
-    val kotlin = "1.6.21"
-    val coroutines = "1.3.9"
+    val kotlin = "1.9.10"
+    val coroutines = "1.7.3"
     val coreKtx = "1.3.2"
     val appCompatJetpack = "1.2.0"
     val constraintLayout = "2.0.4"
@@ -14,7 +14,7 @@ object Versions{
     val multiDex = "2.0.1"
     val material = "1.3.0"
     val flexbox = "3.0.0"
-    val room = "2.4.0-alpha01"
+    val room = "2.6.1"
     val maps = "17.0.0"
     val lifecycleExtensions = "2.2.0"
     val lifecycleJava8Compiler = "1.1.1"
@@ -71,6 +71,7 @@ object roomDependencies{
     val room =  "androidx.room:room-runtime:${Versions.room}"
     val compiler = "androidx.room:room-compiler:${Versions.room}"
     val ktx = "androidx.room:room-ktx:${Versions.room}"
+    val rxjava2 = "androidx.room:room-rxjava2:${Versions.room}"
 }
 
 
