@@ -1,5 +1,7 @@
 package id.gritlabs.dzikirku.model.request
 
+import kotlinx.serialization.Serializable
+
 import android.os.Parcelable
 import id.gritlabs.dzikirku.model.Location
 import id.gritlabs.dzikirku.model.Note
@@ -7,6 +9,7 @@ import id.gritlabs.dzikirku.model.Speaker
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
+@Serializable
 data class NoteRequestModel(
     var local_id:Int? =null,
     var title:String?="",

@@ -3,16 +3,7 @@ package id.gritlabs.dzikirku.util
 
 import android.content.Context
 import android.util.Log
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
 import java.io.*
-
-fun <T:Any>Context.getFromAssets(path:String):T{
-    return Gson().fromJson(
-        FileUtils.getJsonStringFromAssets(this, path),
-        object : TypeToken<T>() {}.type
-    )
-}
 
 object FileUtils {
 
@@ -46,10 +37,6 @@ object FileUtils {
         } catch (e: IOException) {
             Log.e("Exception", "File write failed: $e")
         }
-    }
-
-    fun <T:Any>String.toObject():T{
-        return Gson().fromJson(this, object:TypeToken<T>(){}.type)
     }
 
     fun getJsonStringFromAssets(context: Context, assetPath: String, progress:(Int)->Any?={}):String{

@@ -1,25 +1,22 @@
 package id.gritlabs.dzikirku.model.typeconverters
 
 import androidx.room.TypeConverter
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
+import id.gritlabs.dzikirku.util.AppJson
+import kotlinx.serialization.decodeFromString
+import kotlinx.serialization.encodeToString
 
 class StringArrayConverter {
     @TypeConverter
     fun stringToSomeObjectList(data: String?): ArrayList<String>? {
-        val gson = Gson()
         if (data == null) {
             return arrayListOf()
         }
 
-        val listType = object : TypeToken<ArrayList<String>?>() {
-        }.type
-        return gson.fromJson(data, listType)
+        return AppJson.decodeFromString<ArrayList<String>?>(data)
     }
 
     @TypeConverter
     fun someObjectListToString(someObjects: ArrayList<String>?): String {
-        val gson = Gson()
-        return gson.toJson(someObjects)
+        return AppJson.encodeToString(someObjects)
     }
 }

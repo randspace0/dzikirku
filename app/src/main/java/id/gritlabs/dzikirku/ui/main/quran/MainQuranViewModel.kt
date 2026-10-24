@@ -1,9 +1,9 @@
 package id.gritlabs.dzikirku.ui.main.quran
 
+import id.gritlabs.dzikirku.util.fromJson
+
 import android.content.Context
 import androidx.lifecycle.MutableLiveData
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
 import id.gritlabs.dzikirku.SeparatorItem
 import id.gritlabs.dzikirku.base.BaseViewModel
 import id.gritlabs.dzikirku.constants.LocaleConstants
@@ -44,13 +44,10 @@ class MainQuranViewModel @Inject constructor(
     val verseId: MutableLiveData<Int?> = MutableLiveData()
 
     fun getArabicCalligraphy(mContext: Context, surah: Int): String {
-        return Gson().fromJson<ArrayList<SeparatorItem>>(
-            FileUtils.getJsonStringFromAssets(
+        return FileUtils.getJsonStringFromAssets(
                 mContext,
                 "json/quran/paged/separator.json"
-            ), object :
-                TypeToken<ArrayList<SeparatorItem>>() {}.type
-        ).filter { it.surah == surah }.firstOrNull()?.unicode ?: ""
+            ).fromJson<ArrayList<SeparatorItem>>().filter { it.surah == surah }.firstOrNull()?.unicode ?: ""
     }
 
 }

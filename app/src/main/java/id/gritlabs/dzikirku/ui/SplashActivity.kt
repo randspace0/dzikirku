@@ -1,5 +1,7 @@
 package id.gritlabs.dzikirku.ui
 
+import id.gritlabs.dzikirku.util.fromJson
+
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -8,8 +10,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
 import id.gritlabs.dzikirku.data.Prefs
 import id.gritlabs.dzikirku.data.room.PersistenceDatabase
 import id.gritlabs.dzikirku.data.room.dao.*
@@ -65,24 +65,15 @@ class SplashActivity : AppCompatActivity() {
 
             bookDao.deleteBooks()
             bookDao.putBooks(
-                Gson().fromJson<ArrayList<PrayerBook>>(
-                    FileUtils.getJsonStringFromAssets(this, "json/prayer/book.json"),
-                    object : TypeToken<ArrayList<PrayerBook>>() {}.type
-                )
+                FileUtils.getJsonStringFromAssets(this, "json/prayer/book.json").fromJson<ArrayList<PrayerBook>>()
             )
             prayerDao.deletePrayer()
             prayerDao.putPrayer(
-                Gson().fromJson<ArrayList<Prayer>>(
-                    FileUtils.getJsonStringFromAssets(this, "json/prayer/prayer.json"),
-                    object : TypeToken<ArrayList<Prayer>>() {}.type
-                )
+                FileUtils.getJsonStringFromAssets(this, "json/prayer/prayer.json").fromJson<ArrayList<Prayer>>()
             )
             prayerDataDao.deletePrayerData()
             prayerDataDao.putPrayerData(
-                Gson().fromJson<ArrayList<PrayerData>>(
-                    FileUtils.getJsonStringFromAssets(this, "json/prayer/prayerData.json"),
-                    object : TypeToken<ArrayList<PrayerData>>() {}.type
-                )
+                FileUtils.getJsonStringFromAssets(this, "json/prayer/prayerData.json").fromJson<ArrayList<PrayerData>>()
             )
 
             if (bookmarkDao.getHighlightsSuspend().isEmpty()) {

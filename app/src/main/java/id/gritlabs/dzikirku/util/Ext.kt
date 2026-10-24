@@ -45,8 +45,6 @@ import com.google.android.material.transition.platform.MaterialContainerTransfor
 import com.google.android.material.transition.platform.MaterialContainerTransformSharedElementCallback
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
 import id.gritlabs.dzikirku.constants.LocaleConstants
 import id.gritlabs.dzikirku.constants.LocaleConstants.locale
 import id.gritlabs.dzikirku.data.ApiService
@@ -285,7 +283,7 @@ fun Context.getNoteFromReference(shareId: String, onSuccess: (Note) -> Unit, onF
 //        val TWENTY_MEGABYTES = 1024 * 1024 * 20
 //        notesRef.downloadUrl.addOnSuccessListener {
 //            notesRef.getBytes(TWENTY_MEGABYTES.toLong()).addOnSuccessListener {
-//                onSuccess(Gson().fromJson(String(it), object:TypeToken<Note>(){}.type))
+//                onSuccess(String(it).fromJson<Note>())
 //            }.addOnFailureListener {
 //                it.printStackTrace()
 //                onFailed()
@@ -339,9 +337,9 @@ suspend fun Context.getUserNotes(onSuccess: () -> Unit, onFailed: () -> Unit) {
 
 fun String.getNoteList(): List<Note> {
     return try {
-        Gson().fromJson(this, object : TypeToken<List<Note>>() {}.type)
+        this.fromJson<List<Note>>()
     } catch (e: Exception) {
-        Gson().fromJson<List<NoteLegacy>>(this, object : TypeToken<List<NoteLegacy>>() {}.type)
+        this.fromJson<List<NoteLegacy>>()
             .map {
                 Note(
                     id = it.id,

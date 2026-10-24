@@ -1,12 +1,12 @@
 package id.gritlabs.dzikirku.ui.adapters
 
+import id.gritlabs.dzikirku.util.fromJson
+
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
 import id.gritlabs.dzikirku.SeparatorItem
 import id.gritlabs.dzikirku.base.BaseViewHolder
 import id.gritlabs.dzikirku.constants.LocaleConstants
@@ -150,13 +150,10 @@ class QuranLastReadAdapter : ListAdapter<QuranLastRead, BaseViewHolder>(
 
 
     fun getArabicCalligraphy(mContext: Context, surah: Int): String {
-        return Gson().fromJson<ArrayList<SeparatorItem>>(
-            FileUtils.getJsonStringFromAssets(
+        return FileUtils.getJsonStringFromAssets(
                 mContext,
                 "json/quran/paged/separator.json"
-            ), object :
-                TypeToken<ArrayList<SeparatorItem>>() {}.type
-        ).filter { it.surah == surah }.firstOrNull()?.unicode ?: ""
+            ).fromJson<ArrayList<SeparatorItem>>().filter { it.surah == surah }.firstOrNull()?.unicode ?: ""
     }
 
 }

@@ -3,6 +3,7 @@ plugins {
     id("kotlin-android")
     id("kotlin-kapt")
     id("kotlin-parcelize")
+    id("org.jetbrains.kotlin.plugin.serialization")
     id("dagger.hilt.android.plugin")
     id("com.google.gms.google-services")
     id("com.google.firebase.crashlytics")
@@ -161,8 +162,8 @@ dependencies {
     implementation(jetpackDependencies.cameraXCore)
     implementation(jetpackDependencies.cameraX2)
 
-    implementation(retrofitDependencies.gson)
-    implementation(retrofitDependencies.gsonConverter)
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.0")
+    implementation("com.squareup.retrofit2:converter-kotlinx-serialization:2.11.0")
     implementation(retrofitDependencies.retrofit)
 
 //    implementation(googleDependencies.material)

@@ -1,9 +1,12 @@
 package id.gritlabs.dzikirku.model.response
 
+import kotlinx.serialization.Serializable
+
 import id.gritlabs.dzikirku.model.Location
 import id.gritlabs.dzikirku.model.Note
 import id.gritlabs.dzikirku.model.Speaker
 
+@Serializable
 class NoteResponseModel(var local_id:Int? =null,
                         var title:String?="",
                         var subtitle:String?="",

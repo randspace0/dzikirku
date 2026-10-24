@@ -1,13 +1,13 @@
 package id.gritlabs.dzikirku.ui.main.home
 
+import id.gritlabs.dzikirku.util.fromJson
+
 
 import android.os.CountDownTimer
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
 import id.gritlabs.dzikirku.base.BaseViewModel
 import id.gritlabs.dzikirku.constants.LocaleConstants
 import id.gritlabs.dzikirku.data.AppDataManager
@@ -115,61 +115,41 @@ class MainHomeViewModel @Inject constructor(
 
     suspend fun getQuranData(onDone: () -> Unit) {
         try {
-            val surah = Gson().fromJson<ArrayList<Surah>>(
-                FileUtils.getJsonStringFromAssets(
+            val surah = (FileUtils.getJsonStringFromAssets(
                     dataManager.mContext,
                     "json/quran/surah.json"
-                ) {}, object : TypeToken<ArrayList<Surah>>() {}.type,
-            )
+                ) {}).fromJson<ArrayList<Surah>>()
             surahDao.putSurah(surah)
             ayahDao.deleteAyah()
-            val juz1_5 = Gson().fromJson<ArrayList<Ayah>>(
-                FileUtils.getJsonStringFromAssets(
+            val juz1_5 = (FileUtils.getJsonStringFromAssets(
                     dataManager.mContext,
                     "json/quran/quran1.json"
-                ) {},
-                object : TypeToken<ArrayList<Ayah>>() {}.type,
-            )
+                ) {}).fromJson<ArrayList<Ayah>>()
             ayahDao.putAyah(juz1_5)
-            val juz6_10 = Gson().fromJson<ArrayList<Ayah>>(
-                FileUtils.getJsonStringFromAssets(
+            val juz6_10 = (FileUtils.getJsonStringFromAssets(
                     dataManager.mContext,
                     "json/quran/quran2.json"
-                ) {},
-                object : TypeToken<ArrayList<Ayah>>() {}.type,
-            )
+                ) {}).fromJson<ArrayList<Ayah>>()
             ayahDao.putAyah(juz6_10)
-            val juz11_15 = Gson().fromJson<ArrayList<Ayah>>(
-                FileUtils.getJsonStringFromAssets(
+            val juz11_15 = (FileUtils.getJsonStringFromAssets(
                     dataManager.mContext,
                     "json/quran/quran3.json"
-                ) {},
-                object : TypeToken<ArrayList<Ayah>>() {}.type,
-            )
+                ) {}).fromJson<ArrayList<Ayah>>()
             ayahDao.putAyah(juz11_15)
-            val juz16_20 = Gson().fromJson<ArrayList<Ayah>>(
-                FileUtils.getJsonStringFromAssets(
+            val juz16_20 = (FileUtils.getJsonStringFromAssets(
                     dataManager.mContext,
                     "json/quran/quran4.json"
-                ) {},
-                object : TypeToken<ArrayList<Ayah>>() {}.type,
-            )
+                ) {}).fromJson<ArrayList<Ayah>>()
             ayahDao.putAyah(juz16_20)
-            val juz21_25 = Gson().fromJson<ArrayList<Ayah>>(
-                FileUtils.getJsonStringFromAssets(
+            val juz21_25 = (FileUtils.getJsonStringFromAssets(
                     dataManager.mContext,
                     "json/quran/quran5.json"
-                ) {},
-                object : TypeToken<ArrayList<Ayah>>() {}.type,
-            )
+                ) {}).fromJson<ArrayList<Ayah>>()
             ayahDao.putAyah(juz21_25)
-            val juz26_30 = Gson().fromJson<ArrayList<Ayah>>(
-                FileUtils.getJsonStringFromAssets(
+            val juz26_30 = (FileUtils.getJsonStringFromAssets(
                     dataManager.mContext,
                     "json/quran/quran6.json"
-                ) {},
-                object : TypeToken<ArrayList<Ayah>>() {}.type,
-            )
+                ) {}).fromJson<ArrayList<Ayah>>()
             ayahDao.putAyah(juz26_30)
             onDone.invoke()
         } catch (e: java.lang.Exception) {

@@ -1,12 +1,16 @@
 package id.gritlabs.dzikirku
 
+import kotlinx.serialization.Serializable
+
 import id.gritlabs.dzikirku.model.Surah
 
+@Serializable
 data class QuranApi(
 	val verses: List<VersesItem> = ArrayList(),
 	val pagination:Pagination? = null
 )
 
+@Serializable
 data class WordItem(
 	val line_number: Int? = null,
 	val id: Int? = null,
@@ -19,8 +23,10 @@ data class WordItem(
 	val is_bismillah:Boolean?=false
 )
 
+@Serializable
 data class SeparatorItem(val page:Int, val surah:Int?=null, val line:Int,  val bismillah:Boolean?=false, val unicode:String?="")
 
+@Serializable
 data class VersesItem(
 	val words: List<WordItem> = arrayListOf(),
 	val id: Int? = null,
@@ -31,9 +37,12 @@ data class VersesItem(
 	val hizb_number: Int? = null,
 )
 
+@Serializable
 data class SurahItem(val surah:Surah, val line_number: Int)
+@Serializable
 data class BismillahItem(val line_number: Int)
 
+@Serializable
 data class Pagination(
 	val total_pages:Int = 1
 )

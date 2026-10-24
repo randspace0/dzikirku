@@ -1,5 +1,7 @@
 package id.gritlabs.dzikirku.model
 
+import kotlinx.serialization.Serializable
+
 import android.os.Parcelable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
@@ -8,6 +10,7 @@ import kotlinx.android.parcel.Parcelize
 
 @Entity(tableName = "prayerBooks")
 @Parcelize
+@Serializable
 data class PrayerBook(
     @PrimaryKey
     var id:String,

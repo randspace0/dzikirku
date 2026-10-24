@@ -16,7 +16,9 @@ import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.Response
 import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
+import id.gritlabs.dzikirku.util.AppJson
+import okhttp3.MediaType.Companion.toMediaType
+import retrofit2.converter.kotlinx.serialization.asConverterFactory
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
@@ -112,7 +114,7 @@ interface ApiService {
 
             return Retrofit.Builder()
                 .baseUrl(BuildConfig.SERVER_URL)
-                .addConverterFactory(GsonConverterFactory.create())
+                .addConverterFactory(AppJson.asConverterFactory("application/json".toMediaType()))
                 .client(httpClient.build())
                 .build()
                 .create(ApiService::class.java)
@@ -137,7 +139,7 @@ interface ApiService {
 //    suspend fun getAuth():AuthResponseModel
 
     @POST("v1/notes/sync-bulk")
-    suspend fun syncNotes(@Body notes:List<NoteRequestModel>):Any
+    suspend fun syncNotes(@Body notes:List<NoteRequestModel>): kotlinx.serialization.json.JsonElement
     @POST("v1/notes/sync")
     suspend fun syncNote(@Body notes:NoteRequestModel):AuthResponseModel
     @GET("v1/notes")

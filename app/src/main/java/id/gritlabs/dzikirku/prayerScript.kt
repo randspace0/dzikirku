@@ -1,7 +1,9 @@
 package id.gritlabs.dzikirku
 
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
+import id.gritlabs.dzikirku.util.toJsonString
+
+import id.gritlabs.dzikirku.util.fromJson
+
 import id.gritlabs.dzikirku.model.Prayer
 import id.gritlabs.dzikirku.model.PrayerBook
 import id.gritlabs.dzikirku.model.PrayerData
@@ -11,9 +13,9 @@ fun main() {
 }
 
 fun changeIds(){
-    val books = Gson().fromJson<ArrayList<PrayerBook>>(getJsonString("backup/book.json"), object : TypeToken<ArrayList<PrayerBook>>() {}.type)
-    val prayer = Gson().fromJson<ArrayList<Prayer>>(getJsonString("backup/prayer.json"), object : TypeToken<ArrayList<Prayer>>() {}.type)
-    val prayerData = Gson().fromJson<ArrayList<PrayerData>>(getJsonString("backup/prayerData.json"), object : TypeToken<ArrayList<PrayerData>>() {}.type)
+    val books = getJsonString("backup/book.json").fromJson<ArrayList<PrayerBook>>()
+    val prayer = getJsonString("backup/prayer.json").fromJson<ArrayList<Prayer>>()
+    val prayerData = getJsonString("backup/prayerData.json").fromJson<ArrayList<PrayerData>>()
 
     books.mapIndexed { index, book ->
         prayer.filter { it.book_id == book.id }.map {
@@ -35,9 +37,9 @@ fun changeIds(){
     }
 
     createNewFile("prayerv2")
-    writeToFile(Gson().toJson(prayer), "prayerv2")
+    writeToFile(prayer.toJsonString(), "prayerv2")
     createNewFile("bookv2")
-    writeToFile(Gson().toJson(books), "bookv2")
+    writeToFile(books.toJsonString(), "bookv2")
     createNewFile("prayerDatav2")
-    writeToFile(Gson().toJson(prayerData), "prayerDatav2")
+    writeToFile(prayerData.toJsonString(), "prayerDatav2")
 }

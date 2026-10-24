@@ -1,7 +1,9 @@
 package id.gritlabs.dzikirku
 
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
+import id.gritlabs.dzikirku.util.toJsonString
+
+import id.gritlabs.dzikirku.util.fromJson
+
 import id.gritlabs.dzikirku.model.HadithChapter
 import id.gritlabs.dzikirku.model.HadithData
 import id.gritlabs.dzikirku.model.HadithSubChapter
@@ -74,10 +76,7 @@ fun getChapter(url: String): List<HadithSubChapter> {
 }
 
 fun saveBookV2() {
-    val books = Gson().fromJson<ArrayList<HadithChapter>>(
-        File("riyadussalihin_books.json").inputStream().readBytes().toString(Charsets.UTF_8),
-        object : TypeToken<ArrayList<HadithChapter>>() {}.type
-    )
+    val books = (File("riyadussalihin_books.json").inputStream().readBytes().toString(Charsets.UTF_8)).fromJson<ArrayList<HadithChapter>>()
 
     val bookV2 = books.mapIndexed { index, hadithBook ->
         hadithBook.apply {
@@ -89,7 +88,7 @@ fun saveBookV2() {
         }
     }
 
-    writeToFile(Gson().toJson(bookV2), "riyadussalihin_books_v2")
+    writeToFile(bookV2.toJsonString(), "riyadussalihin_books_v2")
 }
 
 fun saveBook() {
@@ -119,7 +118,7 @@ fun saveBook() {
         )
     }
 
-    writeToFile(Gson().toJson(books), "riyadussalihin_books")
+    writeToFile(books.toJsonString(), "riyadussalihin_books")
 }
 
 fun saveHadith(name: String) {
@@ -134,11 +133,11 @@ fun saveHadith(name: String) {
         )
     )
 
-    writeToFile(Gson().toJson(main.mapIndexed { index, hadithData ->
+    writeToFile((main.mapIndexed { index, hadithData ->
         hadithData.text.add(bahasa[index].text.first())
         hadithData.narrated.add(bahasa[index].narrated.first())
         hadithData
-    }), "riyadussalihin17")
+    }).toJsonString(), "riyadussalihin17")
 }
 
 var currentIndex = 1511

@@ -2,8 +2,8 @@ package id.gritlabs.dzikirku.util
 
 import android.annotation.SuppressLint
 import android.content.Context
-import com.google.gson.Gson
-import com.google.gson.JsonElement
+import kotlinx.serialization.json.JsonObject
+import kotlinx.serialization.json.jsonPrimitive
 import id.gritlabs.dzikirku.data.Prefs
 
 
@@ -35,14 +35,7 @@ class LocaleProvider(private var context: Context?) {
         val language = Prefs.language
         val jsonString = context?.resources?.getIdentifier("locale_$language", "raw", context?.packageName)?.let {
             context?.resources?.openRawResource(it)?.bufferedReader().use { it?.readText() }
-        }
-        val jsonElement = Gson().fromJson(jsonString, JsonElement::class.java)
-        val json = jsonElement.asJsonObject
-        for (entry in json.entrySet()) {
-            if (entry.key == key) {
-                return entry.value.asString
-            }
-        }
-        return key
+        } ?: return key
+        return jsonString.fromJson<JsonObject>()[key]?.jsonPrimitive?.content ?: key
     }
 }
