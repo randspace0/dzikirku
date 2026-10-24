@@ -19,3 +19,25 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+# --- Dzikirku release rules ---
+
+# Optional TLS/markdown providers probed by okhttp and Markwon (from R8 missing_rules.txt)
+-dontwarn org.bouncycastle.jsse.**
+-dontwarn org.conscrypt.**
+-dontwarn org.openjsse.**
+-dontwarn org.commonmark.ext.gfm.strikethrough.Strikethrough
+
+# kotlinx.serialization: the plugin generates serializers; keep their lookup entry points
+-keepattributes *Annotation*, InnerClasses
+-dontnote kotlinx.serialization.**
+-keepclassmembers class **$$serializer { *; }
+-keepclasseswithmembers class id.gritlabs.dzikirku.** {
+    kotlinx.serialization.KSerializer serializer(...);
+}
+-keepclassmembers class id.gritlabs.dzikirku.** {
+    *** Companion;
+}
+
+# Firestore and Room map these models by field name at runtime
+-keepclassmembers class id.gritlabs.dzikirku.model.** { *; }
+-keepclassmembers class id.gritlabs.dzikirku.data.** { *; }
