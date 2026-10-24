@@ -140,7 +140,6 @@ dependencies {
     kapt("com.google.dagger:dagger-android-processor:2.37")
     //(Dagger - Hilt)
     implementation("com.google.dagger:hilt-android:2.48")
-    implementation("androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha03")
     kapt("com.google.dagger:hilt-android-compiler:2.48")
 
     implementation(kotlinDependencies.kotlin)
