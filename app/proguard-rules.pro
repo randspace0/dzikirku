@@ -27,13 +27,17 @@
 -dontwarn org.openjsse.**
 -dontwarn org.commonmark.ext.gfm.strikethrough.Strikethrough
 
-# Gson reflects on field names and generic types
--keepattributes Signature, *Annotation*, EnclosingMethod, InnerClasses
--keep class * extends com.google.gson.reflect.TypeToken
--keepclassmembers,allowobfuscation class * {
-    @com.google.gson.annotations.SerializedName <fields>;
+# kotlinx.serialization: the plugin generates serializers; keep their lookup entry points
+-keepattributes *Annotation*, InnerClasses
+-dontnote kotlinx.serialization.**
+-keepclassmembers class **$$serializer { *; }
+-keepclasseswithmembers class id.gritlabs.dzikirku.** {
+    kotlinx.serialization.KSerializer serializer(...);
+}
+-keepclassmembers class id.gritlabs.dzikirku.** {
+    *** Companion;
 }
 
-# JSON, Firestore and Room-converted models are matched by field name at runtime
+# Firestore and Room map these models by field name at runtime
 -keepclassmembers class id.gritlabs.dzikirku.model.** { *; }
 -keepclassmembers class id.gritlabs.dzikirku.data.** { *; }
