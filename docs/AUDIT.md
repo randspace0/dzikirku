@@ -23,16 +23,16 @@ Items marked **fixed** were fixed in a PR; the rest are open.
 | High | `allowBackup="true"` backs up the Room DB (notes, bookmarks) to Google Drive. Possibly wanted, but it needs `dataExtractionRules`/`fullBackupContent` and a privacy-policy mention | open; decide |
 | High | `google-services.json` and `your_web_client_id` are committed and still point at the old Firebase project/app registration | open; replace after registering the new app in Firebase. Restrict the API key by package + SHA-1 |
 | Medium | Release build: `isMinifyEnabled = false`, no `shrinkResources`, no signing config | open; enable R8 and test (Room, Firebase need keep rules) |
-| Medium | `WRITE_EXTERNAL_STORAGE` + `requestLegacyExternalStorage` are obsolete at target 30+ | open; migrate to MediaStore / SAF |
-| Medium | `PraytimeForegroundService` has no `foregroundServiceType`; Android 14+ (target 34+) requires one plus the matching `FOREGROUND_SERVICE_<TYPE>` permission, and Play asks to justify it | open; pick a type when raising `targetSdk` |
-| Medium | No `POST_NOTIFICATIONS` permission; adhan/reminder notifications are silently dropped on Android 13+ | permission **declared**; the runtime prompt must be added when `targetSdk` reaches 33+ |
+| Medium | `WRITE_EXTERNAL_STORAGE` + `requestLegacyExternalStorage` are obsolete. The share-image flow requests `WRITE_EXTERNAL_STORAGE`, which Android 13+ never grants, so **sharing an image does nothing on Android 13+**. | open; save via MediaStore/FileProvider and drop the permission |
+| Medium | `PraytimeForegroundService` was never started: **removed** along with the `FOREGROUND_SERVICE` permission |
+| Medium | `POST_NOTIFICATIONS` declared and requested at runtime in `MainActivity` | **fixed** |
 
 ## Build and maintainability
 
 | Pri | Finding |
 |-----|---------|
-| High | `compileSdk 31`, `targetSdk 30`, AGP/Gradle 7.2 era. Play requires a much newer target for new apps (see the checklist). Needs AGP, Gradle, Kotlin and dependency upgrades |
-| Medium | Old/alpha deps: `work-runtime 2.7.0-alpha05`, `firebase-analytics 17.2.2` next to Firebase BoM 30.1.0, `play-services-maps 17.0.1` |
+| High | **Partly fixed**: Gradle 8.4, AGP 8.2.2, Kotlin 1.9.10, `compileSdk`/`targetSdk` 34. Play needs a newer target for new apps (see the checklist). Still old: `work-runtime 2.7.0-alpha05`, `firebase-analytics 17.2.2` beside Firebase BoM 30.1.0 |
+| Medium | Still-old deps: `work-runtime 2.7.0-alpha05`, `firebase-analytics 17.2.2`, `play-services-maps 17.0.1`. `com.google.android.play:core:1.10.2` (blocks Play uploads) was replaced; unused `InAppUpdater` and the alpha `hilt-lifecycle-viewmodel` were removed |
 | Medium | 5 `GlobalScope` uses, plus `!!` and `printStackTrace` calls (31 grep hits in total): leaks and crashes under lifecycle changes |
 | Medium | Tests are only the template `Example*Test` files; no coverage of prayer-time maths, Room migrations, or the locale layer |
 | Low | Stale committed artefacts: `.idea/`, `buildSrc/build/` (contains `/Users/mayburger/...` paths), `backup/` |
